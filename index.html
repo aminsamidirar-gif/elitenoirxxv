@@ -46,10 +46,10 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 @media (max-width:760px){.wrap{padding:0 24px}}
 nav.top{position:fixed;top:0;left:0;right:0;z-index:200;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);background:rgba(2,2,7,.62);border-bottom:1px solid var(--line)}
 nav.top .inner{max-width:1280px;margin:0 auto;padding:18px 56px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-nav.top .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
+nav.top .brand{display:flex;align-items:center;gap:20px;text-decoration:none;padding-right:24px}
 nav.top .brand svg,nav.top .brand .brand-logo{width:38px;height:38px;display:block}
 nav.top .brand .brand-logo{border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(201,161,74,.35),0 0 18px -2px rgba(201,161,74,.4)}
-nav.top .brand .word{font-family:var(--display);font-weight:600;letter-spacing:.32em;font-size:13px;color:var(--ivory)}
+nav.top .brand .word{font-family:var(--display);font-weight:600;letter-spacing:.34em;font-size:13px;color:var(--ivory);white-space:nowrap}
 nav.top .links{display:flex;gap:38px;font-family:var(--sans);font-weight:300;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase}
 nav.top .links a{color:var(--ivory-dim);text-decoration:none;transition:color .25s;position:relative}
 nav.top .links a:hover{color:var(--gold-bright)}
@@ -1214,7 +1214,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
             <span class="pb-label">Monthly Membership</span>
             <span class="pb-amount">29,999 <small>ETB</small></span>
             <span class="pb-cycle">per month · billed monthly</span>
-            <a class="pb-email" href="/cdn-cgi/l/email-protection#b6d3dadfc2d3dddfd5ddd3c4c5c5f6d1dbd7dfda98d5d9db"><span class="__cf_email__" data-cfemail="86e3eaeff2e3edefe5ede3f4f5f5c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a>
+            <a class="pb-email js-email" data-user="elitekickerss" data-domain="gmail.com" href="#"></a>
           </div>
           <div class="pb-right">
             <div class="pb-fact"><svg class="pbf-ic"><use href="#att2"/></svg><span>Training <strong>2× per week</strong></span></div>
@@ -1282,7 +1282,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
           <span class="sub">XXV · By Elite Kickers Academy</span>
         </div>
       </div>
-      <div class="mid">Black is power · Gold is legacy<a href="/cdn-cgi/l/email-protection#197c75706d7c72707a727c6b6a6a597e74787075377a7674" class="mid-email"><span class="__cf_email__" data-cfemail="0461686d70616f6d676f61767777446369656d682a676b69">[email&#160;protected]</span></a></div>
+      <div class="mid">Black is power · Gold is legacy<a class="mid-email js-email" data-user="elitekickerss" data-domain="gmail.com" href="#"></a></div>
       <div class="right">
         <a href="tel:+251937131484" aria-label="Phone">+251 937 131 484</a>
         <a href="https://www.instagram.com/elitekickersacademy?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a>
@@ -1311,7 +1311,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // ===== Hero video rotation + fallback =====
 (function(){
   const media = document.getElementById('heroMedia');
@@ -1518,6 +1518,13 @@ if (telebirrForm){
     proofPreview.hidden = true; proofPreview.removeAttribute('src');
   });
 }
+
+// ===== Assemble emails (avoid Cloudflare obfuscation) =====
+document.querySelectorAll('.js-email').forEach(a => {
+  const addr = (a.dataset.user || '') + '@' + (a.dataset.domain || '');
+  a.href = 'mailto:' + addr;
+  a.textContent = addr;
+});
 
 // ===== Copy account numbers =====
 document.querySelectorAll('.copy-btn').forEach(btn => {
