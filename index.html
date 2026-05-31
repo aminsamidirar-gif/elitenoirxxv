@@ -1,17 +1,20 @@
 <!doctype html>
 <html lang="en">
 <head>
+<style data-omelette-injected>html,body{background:transparent}</style><script data-omelette-injected>(()=>{var j=["https://claude.ai","https://preview.claude.ai"];var x=true;var S=30000;var f=3000;document.addEventListener("DOMContentLoaded",()=>{const H=window.Babel;const G="om-src-id";if(H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[G])){H.registerPlugin(G,({types:Y})=>({visitor:{JSXOpeningElement(U,Q){const J=U.node;if(J.name&&J.name.type==="JSXMemberExpression")return;for(let V=0;V<J.attributes.length;V++){const L=J.attributes[V];if(L.type==="JSXAttribute"&&L.name&&L.name.name==="data-om-id")return}const W=Q.file&&Q.file.opts&&Q.file.opts.filename||"?";const Z=J.loc&&J.loc.start;const z=`jsx:${W}:${J.start??0}:${Z?Z.line:0}:${Z?Z.column+1:0}`;J.attributes.push(Y.jsxAttribute(Y.jsxIdentifier("data-om-id"),Y.stringLiteral(z)))}}}))}const k="om-text-extract";let A=false;if(x&&H&&H.registerPlugin&&!(H.availablePlugins&&H.availablePlugins[k])){const Y=window.React;if(Y&&Y.useSyncExternalStore&&Y.createElement){A=true;const U={};const Q=new Set;let J=0;window.__omTextO=U;window.__omTextSet=(z)=>{for(const V in z){const L=z[V];if(L==null)delete U[V];else U[V]=L}J++;Q.forEach((V)=>V())};const W=(z)=>{Q.add(z);return()=>Q.delete(z)};const Z=()=>J;window.__OmT=function z(V){Y.useSyncExternalStore(W,Z,Z);return Y.createElement("span",{"data-om-text":V.i,className:"__om-t"},V.i in U?U[V.i]:V.children)};H.registerPlugin(k,({types:z})=>{const V={style:1,script:1,noscript:1,textarea:1,title:1,option:1,text:1,tspan:1,textPath:1};const L={placeholder:1,alt:1,title:1,label:1,"aria-label":1,"aria-description":1,"aria-placeholder":1};const _=($,C)=>z.logicalExpression("??",z.memberExpression(z.logicalExpression("||",z.memberExpression(z.identifier("window"),z.identifier("__omTextO")),z.objectExpression([])),z.stringLiteral($),true),C);const E=($)=>$.file&&$.file.opts&&$.file.opts.filename||"?";const B=($)=>$.file&&$.file.code||"";const b=($,C)=>{const X=(F)=>F&&F.start!=null&&F.end!=null&&(F.type==="StringLiteral"||F.type==="TemplateLiteral"&&F.expressions.length===0)?[F.start,F.end]:null;const N=X(C);if(N)return N;if(C&&C.type==="Identifier"){const F=$.scope.getBinding(C.name);if(F&&F.constant&&F.path.node.type==="VariableDeclarator"){return X(F.path.node.init)}}return null};const M=($,C,X)=>{const N=$.node;let F=false;const w=(K,q)=>{F=true;return z.jsxElement(z.jsxOpeningElement(z.jsxIdentifier("__OmT"),[z.jsxAttribute(z.jsxIdentifier("i"),z.stringLiteral(K))],false),z.jsxClosingElement(z.jsxIdentifier("__OmT")),[q],false)};const D=N.children.map((K)=>{if(K.type==="JSXText"){if(K.start==null||K.end==null)return K;const q=X.slice(K.start,K.end);const R=q.length-q.trimStart().length;const m=q.length-q.trimEnd().length;if(R+m>=q.length)return K;return w(`txt:${C}:${K.start+R}:${K.end-m}`,K)}if(K.type==="JSXExpressionContainer"){const q=b($,K.expression);if(q)return w(`str:${C}:${q[0]}:${q[1]}`,K)}return K});if(F)N.children=D};return{visitor:{JSXOpeningElement($,C){const X=$.node;const N=E(C);const F={};for(let w=0;w<X.attributes.length;w++){const D=X.attributes[w];if(D.type!=="JSXAttribute"||!D.name)continue;const K=D.name.name;if(!L[K])continue;if(!D.value||D.value.type!=="StringLiteral")continue;if(D.value.start==null||D.value.end==null)continue;const q=`txt:${N}:${D.value.start}:${D.value.end}`;F[K]=q;D.value=z.jsxExpressionContainer(_(q,z.stringLiteral(D.value.value)))}if(Object.keys(F).length){X.attributes.push(z.jsxAttribute(z.jsxIdentifier("data-om-text-attrs"),z.stringLiteral(JSON.stringify(F))))}},JSXElement($,C){const X=$.node.openingElement;const N=X&&X.name&&X.name.name;if(N==="__OmT")return;if(typeof N==="string"&&V[N])return;M($,E(C),B(C))},JSXFragment($,C){M($,E(C),B(C))}}}})}}const u=A?["transform-react-jsx-source",G,k]:["transform-react-jsx-source",G];document.querySelectorAll('script[type="text/babel"],script[type="text/jsx"]').forEach((Y,U)=>{const Q=Y.getAttribute("data-plugins")||"";const J=u.filter((W)=>Q.indexOf(W)<0);if(J.length){Y.setAttribute("data-plugins",Q?`${Q},${J.join(",")}`:J.join(","))}if(!Y.hasAttribute("data-filename")){Y.setAttribute("data-filename",Y.getAttribute("src")||`inline-${U}`)}})});var y=window.parent;if(y&&y!==window){const H=(Q,J)=>{try{y.postMessage({__omelette_log:true,type:Q,data:J},"*")}catch{}};["log","warn","error"].forEach((Q)=>{const J=console[Q];console[Q]=(...W)=>{const Z=W.map((z)=>{try{return typeof z==="object"?JSON.stringify(z):String(z)}catch{try{return String(z)}catch{return"[unstringifiable]"}}}).join(" ");H(Q,Z);J.apply(console,W)}});window.addEventListener("error",(Q)=>{const J=Q.target;if(J&&J!==window&&J.tagName){const W=J.src||J.href||"";H("resource_error",`${J.tagName} failed to load: ${W}`)}else{H("error",`${Q.message||"Unknown error"} at ${Q.filename||"?"}:${Q.lineno||0}:${Q.colno||0}`)}},true);window.addEventListener("unhandledrejection",(Q)=>{const J=Q.reason;const W=J instanceof Error?`${J.message} ${J.stack}`:String(J);H("error",`Unhandled rejection: ${W}`)});const G=()=>{try{y.postMessage({type:"omelette:height",height:document.documentElement.scrollHeight},"*")}catch{}};if(document.readyState==="complete")G();else window.addEventListener("load",G);if(window.ResizeObserver)new ResizeObserver(G).observe(document.documentElement);const k={};let A=0;window.claude={complete(Q){return new Promise((J,W)=>{if(!j.length){W(new Error("claude.complete: no parent origin"));return}const Z=`c${++A}`;const z=()=>setTimeout(()=>{delete k[Z];W(new Error(`claude.complete: no data for ${S/1000}s`))},S);const V=z();k[Z]={resolve:J,reject:W,text:"",t:V,arm:z};try{for(const L of j){y.postMessage({__om_api:true,id:Z,body:Q},L)}}catch(L){clearTimeout(V);delete k[Z];W(L)}})}};const u={};let Y=0;window.omelette={writeFile:(Q,J)=>new Promise((W,Z)=>{if(!j.length){W();return}const z=`f${++Y}`;const V=setTimeout(()=>{delete u[z];W()},f);u[z]={resolve:W,reject:Z,t:V};try{for(const L of j){y.postMessage({__om_file:true,id:z,op:"write",path:Q,content:J},L)}}catch{clearTimeout(V);delete u[z];W()}})};const U=(Q)=>{try{return JSON.stringify(Q)}catch{return JSON.stringify(String(Q))}};window.addEventListener("message",(Q)=>{if(j.indexOf(Q.origin)<0)return;if(Q.source!==y)return;const J=Q.data;if(!J)return;if(J.type==="omelette-preview-refresh"){if(typeof J.token!=="string"||!/^[0-9a-f.-]+(\.(rc|pr-[0-9]+))?(\.[0-9]+\.[0-9a-f]{16})?$/.test(J.token))return;const z=Math.max(1,Math.floor((J.expiresAt||0)-Date.now()/1000));document.cookie="__Host-omelette-preview="+J.token+"; Path=/; Secure; SameSite=None; Partitioned; Max-Age="+z;return}if(J.__om_file_r){const z=u[J.id];if(!z)return;clearTimeout(z.t);delete u[J.id];if(J.ok)z.resolve();else z.reject(new Error(J.error||"write failed"));return}if(J.__om_api_r){const z=k[J.id];if(!z)return;if(J.error!=null){clearTimeout(z.t);delete k[J.id];z.reject(new Error(J.error));return}if(J.chunk!=null){clearTimeout(z.t);z.t=z.arm();z.text+=J.chunk;return}if(J.done){clearTimeout(z.t);delete k[J.id];z.resolve(J.text!=null?J.text:z.text);return}return}if(!J.__om_eval)return;const W=J;const Z=(z)=>{Q.source.postMessage({...z,__om_eval_r:1,id:W.id},Q.origin)};try{const z=(0,eval)(W.code);if(z&&typeof z.then==="function"){z.then((V)=>Z({ok:1,v:U(V)}),(V)=>Z({ok:0,e:String(V)}))}else{Z({ok:1,v:U(z)})}}catch(z){Z({ok:0,e:String(z)})}})}})();
+</script>
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Elite Noir XXV · Invitation-Only Football Academy · Addis Ababa</title>
 <meta name="description" content="Elite Noir XXV — invitation-only football academy in Addis Ababa, Ethiopia. Sister of Elite Kickers Academy. Black is power. Gold is legacy." />
-<link rel="icon" type="image/png" href="assets/elite-noir-xxv-logo.png" />
-<link rel="apple-touch-icon" href="assets/elite-noir-xxv-logo.png" />
+<link rel="icon" type="image/png" href="elite-noir-xxv-logo.png" />
+<link rel="apple-touch-icon" href="elite-noir-xxv-logo.png" />
 <link rel="canonical" href="https://elitenoirxxv.com/" />
 <meta property="og:url" content="https://elitenoirxxv.com/" />
 <meta property="og:title" content="Elite Noir XXV · Invitation-Only Football Academy" />
 <meta property="og:description" content="A premium monthly elite football development experience by Elite Kickers Academy — Addis Ababa, Ethiopia. Black is power. Gold is legacy." />
-<meta property="og:image" content="assets/edit/squad-band.png" />
+<meta property="og:image" content="edit/squad-band.png" />
 <meta property="og:type" content="website" />
 <meta name="theme-color" content="#020207" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -451,7 +454,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
 <!-- ============ CINEMATIC LOADER ============ -->
 <div id="loader">
-  <img class="l-crest" src="assets/elite-noir-xxv-logo.png" alt="Elite Noir XXV"/>
+  <img class="l-crest" src="elite-noir-xxv-logo.png" alt="Elite Noir XXV"/>
   <div class="l-word">ELITE&nbsp;NOIR&nbsp;XXV</div>
   <div class="l-bar"><i></i></div>
   <div class="l-sub">By Elite Kickers Academy</div>
@@ -734,7 +737,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 <nav class="top">
   <div class="inner">
     <a href="#top" class="brand">
-      <img src="assets/elite-noir-xxv-logo.png" alt="Elite Noir XXV" class="brand-logo"/>
+      <img src="elite-noir-xxv-logo.png" alt="Elite Noir XXV" class="brand-logo"/>
       <span class="word">ELITE&nbsp;NOIR</span>
     </a>
     <div class="links">
@@ -765,26 +768,26 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="hero-media ready" id="heroMedia">
-    <video class="hero-video hv-active" data-i="0" autoplay muted loop playsinline preload="auto" poster="assets/edit/train-still-2.png">
-      <source src="assets/academy-montage.mp4" type="video/mp4"/>
+    <video class="hero-video hv-active" data-i="0" autoplay muted loop playsinline preload="auto" poster="edit/train-still-2.png">
+      <source src="academy-montage.mp4" type="video/mp4"/>
     </video>
-    <video class="hero-video" data-i="1" muted loop playsinline poster="assets/venue-skyline.jpeg">
-      <source src="assets/venue-skyline.mp4" type="video/mp4"/>
+    <video class="hero-video" data-i="1" muted loop playsinline poster="venue-skyline.jpeg">
+      <source src="venue-skyline.mp4" type="video/mp4"/>
     </video>
-    <video class="hero-video" data-i="2" muted loop playsinline poster="assets/venue-aerial.jpeg">
-      <source src="assets/venue-aerial.mp4" type="video/mp4"/>
+    <video class="hero-video" data-i="2" muted loop playsinline poster="venue-aerial.jpeg">
+      <source src="venue-aerial.mp4" type="video/mp4"/>
     </video>
-    <video class="hero-video" data-i="3" muted loop playsinline poster="assets/edit/train-still-2.png">
-      <source src="assets/train-strike.mp4" type="video/mp4"/>
+    <video class="hero-video" data-i="3" muted loop playsinline poster="edit/train-still-2.png">
+      <source src="train-strike.mp4" type="video/mp4"/>
     </video>
-    <img class="hero-fallback" src="assets/venue-skyline.jpeg" alt=""/>
+    <img class="hero-fallback" src="venue-skyline.jpeg" alt=""/>
   </div>
   <div class="stadium-light"><span class="beam b1"></span><span class="beam b2"></span><span class="beam b3"></span></div>
   <canvas id="heroParticles"></canvas>
   <div class="stage"></div>
   <div class="wrap">
     <div class="crest-wrap reveal in">
-      <img src="assets/elite-noir-xxv-logo.png" alt="Elite Noir XXV crest" class="crest-img"/>
+      <img src="elite-noir-xxv-logo.png" alt="Elite Noir XXV crest" class="crest-img"/>
     </div>
     <span class="h-kicker reveal in">Elite Noir XXV · By Elite Kickers Academy</span>
     <h1 class="hero-headline reveal in">Built for the next generation of <span class="gold">elite footballers.</span></h1>
@@ -866,27 +869,27 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
     <div class="cards">
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/01-one-to-one.png" alt="Senior coach and player on a private floodlit pitch at dusk" loading="lazy"/><span class="roman">I</span><span class="tag">Mentorship</span></div>
+        <div class="visual"><img class="img" src="programme/01-one-to-one.png" alt="Senior coach and player on a private floodlit pitch at dusk" loading="lazy"/><span class="roman">I</span><span class="tag">Mentorship</span></div>
         <div class="body-wrap"><h4>One to One</h4><p>Every player is paired with a senior fellow for the duration of the cycle. Weekly private sessions, daily film, and a personal ledger that follows them after graduation.</p></div>
       </article>
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/02-the-table.png" alt="Highland Ethiopian meal on a dark walnut table" loading="lazy"/><span class="roman">II</span><span class="tag">Nutrition</span></div>
+        <div class="visual"><img class="img" src="programme/02-the-table.png" alt="Highland Ethiopian meal on a dark walnut table" loading="lazy"/><span class="roman">II</span><span class="tag">Nutrition</span></div>
         <div class="body-wrap"><h4>The Table</h4><p>Three meals composed by a resident kitchen. Highland grains, fresh injera, lean game. No supplements, no shortcuts — only what the body asks for that day.</p></div>
       </article>
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/03-quiet-room.png" alt="A private study room lit by a single brass lamp at dusk" loading="lazy"/><span class="roman">III</span><span class="tag">Mental</span></div>
+        <div class="visual"><img class="img" src="programme/03-quiet-room.png" alt="A private study room lit by a single brass lamp at dusk" loading="lazy"/><span class="roman">III</span><span class="tag">Mental</span></div>
         <div class="body-wrap"><h4>The Quiet Room</h4><p>Two hours each evening for stillness, reading, and review. Performance psychology, breath, and the art of staying small inside a loud moment.</p></div>
       </article>
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/04-compass.png" alt="Antique brass compass on aged leather" loading="lazy"/><span class="roman">IV</span><span class="tag">Pathway</span></div>
+        <div class="visual"><img class="img" src="programme/04-compass.png" alt="Antique brass compass on aged leather" loading="lazy"/><span class="roman">IV</span><span class="tag">Pathway</span></div>
         <div class="body-wrap"><h4>The Compass</h4><p>Direct counsel with European, Gulf, and African club networks. We do not promise contracts — we teach the player to be the kind of name a contract finds.</p></div>
       </article>
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/05-the-forge.png" alt="A lone runner on a highland trail at dawn" loading="lazy"/><span class="roman">V</span><span class="tag">Physical</span></div>
+        <div class="visual"><img class="img" src="programme/05-the-forge.png" alt="A lone runner on a highland trail at dawn" loading="lazy"/><span class="roman">V</span><span class="tag">Physical</span></div>
         <div class="body-wrap"><h4>The Forge</h4><p>Strength, mobility, recovery. Highland-altitude conditioning paired with daily ice, sauna, and physiotherapy. Bodies built to last, not just to peak.</p></div>
       </article>
       <article class="card reveal">
-        <div class="visual"><img class="img" src="assets/programme/06-the-library.png" alt="A private library at night with a brass lamp on a desk" loading="lazy"/><span class="roman">VI</span><span class="tag">Academic</span></div>
+        <div class="visual"><img class="img" src="programme/06-the-library.png" alt="A private library at night with a brass lamp on a desk" loading="lazy"/><span class="roman">VI</span><span class="tag">Academic</span></div>
         <div class="body-wrap"><h4>The Library</h4><p>Mornings are footballers, afternoons are students. Accredited tutoring in English, mathematics, finance, and the history of the game. We graduate a person.</p></div>
       </article>
     </div>
@@ -902,19 +905,19 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <p class="sub reveal">European-inspired methodology, a closed elite environment, and a professional culture most young players never get to stand inside.</p>
     </div>
     <div class="diff-grid">
-      <div class="diff reveal"><div class="diff-img"><img src="assets/diff/diff-1-methodology.png" alt="Coach at a tactics board with players" loading="lazy"/><span class="idx">01</span></div><div class="diff-body"><h4>European Methodology</h4><p>Training models drawn from elite continental academies — periodised, position-specific, and built around the modern professional game.</p></div></div>
-      <div class="diff reveal"><div class="diff-img"><img src="assets/diff/diff-2-exclusive.png" alt="A small elite cohort on a private pitch" loading="lazy"/><span class="idx">02</span></div><div class="diff-body"><h4>Exclusive Environment</h4><p>A small, closed cohort. No mass enrolment, no open trials — only serious players held to a professional standard every single day.</p></div></div>
-      <div class="diff reveal"><div class="diff-img"><img src="assets/diff/diff-3-coaching.png" alt="Coach demonstrating technique one to one" loading="lazy"/><span class="idx">03</span></div><div class="diff-body"><h4>Professional Coaching</h4><p>Licensed coaches and specialists who treat youth development with the rigour of a first-team setup. Standards, not shortcuts.</p></div></div>
-      <div class="diff reveal"><div class="diff-img"><img src="assets/edit/player-noir.png" alt="Elite Noir player in full black and gold kit" loading="lazy" style="object-position:center 22%"/><span class="idx">04</span></div><div class="diff-body"><h4>Mentality &amp; Confidence</h4><p>Performance psychology, leadership, and composure under pressure — the inner game that separates talented players from elite ones.</p></div></div>
-      <div class="diff reveal"><div class="diff-img"><img src="assets/diff/diff-5-tracking.png" alt="Performance tracking with GPS vest and analysis" loading="lazy"/><span class="idx">05</span></div><div class="diff-body"><h4>Performance Tracking</h4><p>Every player is measured, filmed, and reviewed. Progress is documented across the cycle and shared transparently with the family.</p></div></div>
-      <div class="diff reveal"><div class="diff-img"><img src="assets/diff/diff-6-nutrition.png" alt="Player recovering with a healthy meal" loading="lazy"/><span class="idx">06</span></div><div class="diff-body"><h4>Nutrition &amp; Recovery</h4><p>Guided fuelling, sleep, and recovery protocols. We build bodies that last a career, not just a season.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="diff/diff-1-methodology.png" alt="Coach at a tactics board with players" loading="lazy"/><span class="idx">01</span></div><div class="diff-body"><h4>European Methodology</h4><p>Training models drawn from elite continental academies — periodised, position-specific, and built around the modern professional game.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="diff/diff-2-exclusive.png" alt="A small elite cohort on a private pitch" loading="lazy"/><span class="idx">02</span></div><div class="diff-body"><h4>Exclusive Environment</h4><p>A small, closed cohort. No mass enrolment, no open trials — only serious players held to a professional standard every single day.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="diff/diff-3-coaching.png" alt="Coach demonstrating technique one to one" loading="lazy"/><span class="idx">03</span></div><div class="diff-body"><h4>Professional Coaching</h4><p>Licensed coaches and specialists who treat youth development with the rigour of a first-team setup. Standards, not shortcuts.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="edit/player-noir.png" alt="Elite Noir player in full black and gold kit" loading="lazy" style="object-position:center 22%"/><span class="idx">04</span></div><div class="diff-body"><h4>Mentality &amp; Confidence</h4><p>Performance psychology, leadership, and composure under pressure — the inner game that separates talented players from elite ones.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="diff/diff-5-tracking.png" alt="Performance tracking with GPS vest and analysis" loading="lazy"/><span class="idx">05</span></div><div class="diff-body"><h4>Performance Tracking</h4><p>Every player is measured, filmed, and reviewed. Progress is documented across the cycle and shared transparently with the family.</p></div></div>
+      <div class="diff reveal"><div class="diff-img"><img src="diff/diff-6-nutrition.png" alt="Player recovering with a healthy meal" loading="lazy"/><span class="idx">06</span></div><div class="diff-body"><h4>Nutrition &amp; Recovery</h4><p>Guided fuelling, sleep, and recovery protocols. We build bodies that last a career, not just a season.</p></div></div>
     </div>
   </div>
 </section>
 
 <!-- ============ SQUAD BAND ============ -->
 <section class="squad-band" aria-label="The Elite Noir XXV squad">
-  <img class="squad-img" src="assets/edit/squad-band.png" alt="The Elite Noir XXV squad in the black and gold kit"/>
+  <img class="squad-img" src="edit/squad-band.png" alt="The Elite Noir XXV squad in the black and gold kit"/>
   <div class="squad-overlay">
     <div class="wrap">
       <div class="rule reveal" style="justify-content:center;margin-bottom:18px">The Cohort · MMXXV</div>
@@ -980,7 +983,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
         <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
         <div class="stage">
           <span class="tag">Edition · MMXXV</span>
-          <img class="kit-img" src="assets/elite-noir-kit.jpeg" alt="Elite Noir XXV match kit — jersey, shorts, socks and boots in black and gold"/>
+          <img class="kit-img" src="elite-noir-kit.jpeg" alt="Elite Noir XXV match kit — jersey, shorts, socks and boots in black and gold"/>
         </div>
       </div>
       <div>
@@ -1037,12 +1040,12 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
         <p>Our pitch sits within the Imperial Sporting Quarter — a private, gated complex bordering the National Palace of Addis Ababa. Morning fog over the highland turf, dusk under brass floodlights.</p>
         <p style="font-family:var(--sans);font-style:normal;color:var(--ivory-faint);font-size:11px;letter-spacing:.32em;text-transform:uppercase;margin-top:24px">Addis Ababa · 2,355m elevation · GMT+3</p>
       </div>
-      <div class="image"><img src="assets/national-palace.png" alt="The National Palace of Addis Ababa, beside the Imperial Sporting Quarter"/></div>
+      <div class="image"><img src="national-palace.png" alt="The National Palace of Addis Ababa, beside the Imperial Sporting Quarter"/></div>
     </div>
 
     <a class="sister reveal" href="https://www.instagram.com/elitekickersacademy?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
       <div class="left">
-        <img src="assets/elite-kickers-logo.jpeg" alt="Elite Kickers Academy" class="sister-logo"/>
+        <img src="elite-kickers-logo.jpeg" alt="Elite Kickers Academy" class="sister-logo"/>
         <div class="meta">
           <div class="l1">Sister Academy · Ages 6 — 14</div>
           <div class="l2">Elite Kickers Football Academy</div>
@@ -1067,25 +1070,25 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     </div>
     <div class="partners-marquee reveal">
       <div class="partners-track">
-        <div class="partner"><img src="assets/partners/tottenham-w.png" alt="Tottenham Hotspur"/></div>
-        <div class="partner"><img src="assets/partners/benfica-t.png" alt="SL Benfica"/></div>
-        <div class="partner"><img src="assets/partners/sporting-cp-t.png" alt="Sporting CP"/></div>
-        <div class="partner"><img src="assets/partners/real-valladolid-t.png" alt="Real Valladolid"/></div>
-        <div class="partner"><img src="assets/partners/como-t.png" alt="Como 1907"/></div>
-        <div class="partner"><img src="assets/partners/malaga-city-t.png" alt="Málaga City FC"/></div>
-        <div class="partner"><img src="assets/partners/empoli-t.png" alt="Empoli FC"/></div>
-        <div class="partner lfe"><img src="assets/partners/lfe-color.png" alt="League Football Education"/></div>
-        <div class="partner"><img src="assets/partners/on-w.png" alt="On"/></div>
+        <div class="partner"><img src="partners/tottenham-w.png" alt="Tottenham Hotspur"/></div>
+        <div class="partner"><img src="partners/benfica-t.png" alt="SL Benfica"/></div>
+        <div class="partner"><img src="partners/sporting-cp-t.png" alt="Sporting CP"/></div>
+        <div class="partner"><img src="partners/real-valladolid-t.png" alt="Real Valladolid"/></div>
+        <div class="partner"><img src="partners/como-t.png" alt="Como 1907"/></div>
+        <div class="partner"><img src="partners/malaga-city-t.png" alt="Málaga City FC"/></div>
+        <div class="partner"><img src="partners/empoli-t.png" alt="Empoli FC"/></div>
+        <div class="partner lfe"><img src="partners/lfe-color.png" alt="League Football Education"/></div>
+        <div class="partner"><img src="partners/on-w.png" alt="On"/></div>
         <!-- duplicate set for seamless loop -->
-        <div class="partner"><img src="assets/partners/tottenham-w.png" alt="Tottenham Hotspur"/></div>
-        <div class="partner"><img src="assets/partners/benfica-t.png" alt="SL Benfica"/></div>
-        <div class="partner"><img src="assets/partners/sporting-cp-t.png" alt="Sporting CP"/></div>
-        <div class="partner"><img src="assets/partners/real-valladolid-t.png" alt="Real Valladolid"/></div>
-        <div class="partner"><img src="assets/partners/como-t.png" alt="Como 1907"/></div>
-        <div class="partner"><img src="assets/partners/malaga-city-t.png" alt="Málaga City FC"/></div>
-        <div class="partner"><img src="assets/partners/empoli-t.png" alt="Empoli FC"/></div>
-        <div class="partner lfe"><img src="assets/partners/lfe-color.png" alt="League Football Education"/></div>
-        <div class="partner"><img src="assets/partners/on-w.png" alt="On"/></div>
+        <div class="partner"><img src="partners/tottenham-w.png" alt="Tottenham Hotspur"/></div>
+        <div class="partner"><img src="partners/benfica-t.png" alt="SL Benfica"/></div>
+        <div class="partner"><img src="partners/sporting-cp-t.png" alt="Sporting CP"/></div>
+        <div class="partner"><img src="partners/real-valladolid-t.png" alt="Real Valladolid"/></div>
+        <div class="partner"><img src="partners/como-t.png" alt="Como 1907"/></div>
+        <div class="partner"><img src="partners/malaga-city-t.png" alt="Málaga City FC"/></div>
+        <div class="partner"><img src="partners/empoli-t.png" alt="Empoli FC"/></div>
+        <div class="partner lfe"><img src="partners/lfe-color.png" alt="League Football Education"/></div>
+        <div class="partner"><img src="partners/on-w.png" alt="On"/></div>
       </div>
     </div>
     <p class="partners-foot reveal">Club &amp; institution marks shown denote development, exchange and pathway relationships. All marks are the property of their respective owners.</p>
@@ -1211,7 +1214,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
             <span class="pb-label">Monthly Membership</span>
             <span class="pb-amount">29,999 <small>ETB</small></span>
             <span class="pb-cycle">per month · billed monthly</span>
-            <a class="pb-email" href="mailto:elitekickerss@gmail.com">elitekickerss@gmail.com</a>
+            <a class="pb-email" href="/cdn-cgi/l/email-protection#b6d3dadfc2d3dddfd5ddd3c4c5c5f6d1dbd7dfda98d5d9db"><span class="__cf_email__" data-cfemail="86e3eaeff2e3edefe5ede3f4f5f5c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></a>
           </div>
           <div class="pb-right">
             <div class="pb-fact"><svg class="pbf-ic"><use href="#att2"/></svg><span>Training <strong>2× per week</strong></span></div>
@@ -1222,16 +1225,16 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
         <p class="pay-note" style="margin:0 0 24px">Settle the monthly fee to one of the accounts below — all held in the name <strong style="color:var(--gold-bright);font-style:normal">Pick Vitor</strong>. <strong style="color:var(--gold-bright);font-style:normal">Select a method</strong> to copy the details and upload your deposit screenshot — it is sent straight to the academy.</p>
         <div class="pay-grid">
-          <label class="pay"><input type="radio" name="payment" value="Telebirr" data-name="Telebirr" data-acct="0937131484" data-logo="assets/pay/telebirr.png"/><span class="radio"></span><span class="p-logo"><img src="assets/pay/telebirr.png" alt="Telebirr"/></span><span class="p-body"><span class="p-name">Telebirr</span><span class="p-num" data-copy="0937131484">0937131484</span><span class="p-desc">Mobile Money · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="0937131484" aria-label="Copy Telebirr number">Copy</button></label>
-          <label class="pay"><input type="radio" name="payment" value="Commercial Bank of Ethiopia" data-name="Commercial Bank of Ethiopia" data-acct="1000530655958" data-logo="assets/pay/cbe.png"/><span class="radio"></span><span class="p-logo"><img src="assets/pay/cbe.png" alt="Commercial Bank of Ethiopia"/></span><span class="p-body"><span class="p-name">Commercial Bank of Ethiopia</span><span class="p-num" data-copy="1000530655958">1000530655958</span><span class="p-desc">CBE · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="1000530655958" aria-label="Copy CBE account">Copy</button></label>
-          <label class="pay"><input type="radio" name="payment" value="Bank of Abyssinia" data-name="Bank of Abyssinia" data-acct="101258303" data-logo="assets/pay/abyssinia.png"/><span class="radio"></span><span class="p-logo"><img src="assets/pay/abyssinia.png" alt="Bank of Abyssinia"/></span><span class="p-body"><span class="p-name">Bank of Abyssinia</span><span class="p-num" data-copy="101258303">101258303</span><span class="p-desc">BoA · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="101258303" aria-label="Copy Bank of Abyssinia account">Copy</button></label>
-          <label class="pay"><input type="radio" name="payment" value="Awash Bank" data-name="Awash Bank" data-acct="01320759433300" data-logo="assets/pay/awash.png"/><span class="radio"></span><span class="p-logo"><img src="assets/pay/awash.png" alt="Awash Bank"/></span><span class="p-body"><span class="p-name">Awash Bank</span><span class="p-num" data-copy="01320759433300">01320759433300</span><span class="p-desc">Awash · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="01320759433300" aria-label="Copy Awash Bank account">Copy</button></label>
+          <label class="pay"><input type="radio" name="payment" value="Telebirr" data-name="Telebirr" data-acct="0937131484" data-logo="pay/telebirr.png"/><span class="radio"></span><span class="p-logo"><img src="pay/telebirr.png" alt="Telebirr"/></span><span class="p-body"><span class="p-name">Telebirr</span><span class="p-num" data-copy="0937131484">0937131484</span><span class="p-desc">Mobile Money · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="0937131484" aria-label="Copy Telebirr number">Copy</button></label>
+          <label class="pay"><input type="radio" name="payment" value="Commercial Bank of Ethiopia" data-name="Commercial Bank of Ethiopia" data-acct="1000530655958" data-logo="pay/cbe.png"/><span class="radio"></span><span class="p-logo"><img src="pay/cbe.png" alt="Commercial Bank of Ethiopia"/></span><span class="p-body"><span class="p-name">Commercial Bank of Ethiopia</span><span class="p-num" data-copy="1000530655958">1000530655958</span><span class="p-desc">CBE · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="1000530655958" aria-label="Copy CBE account">Copy</button></label>
+          <label class="pay"><input type="radio" name="payment" value="Bank of Abyssinia" data-name="Bank of Abyssinia" data-acct="101258303" data-logo="pay/abyssinia.png"/><span class="radio"></span><span class="p-logo"><img src="pay/abyssinia.png" alt="Bank of Abyssinia"/></span><span class="p-body"><span class="p-name">Bank of Abyssinia</span><span class="p-num" data-copy="101258303">101258303</span><span class="p-desc">BoA · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="101258303" aria-label="Copy Bank of Abyssinia account">Copy</button></label>
+          <label class="pay"><input type="radio" name="payment" value="Awash Bank" data-name="Awash Bank" data-acct="01320759433300" data-logo="pay/awash.png"/><span class="radio"></span><span class="p-logo"><img src="pay/awash.png" alt="Awash Bank"/></span><span class="p-body"><span class="p-name">Awash Bank</span><span class="p-num" data-copy="01320759433300">01320759433300</span><span class="p-desc">Awash · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="01320759433300" aria-label="Copy Awash Bank account">Copy</button></label>
         </div>
 
         <!-- deposit-proof uploader (all methods) -->
         <div class="telebirr-proof" id="telebirrProof" hidden>
           <div class="tp-head">
-            <span class="p-logo tp-logo"><img src="assets/pay/telebirr.png" alt="" id="tpLogo"/></span>
+            <span class="p-logo tp-logo"><img src="pay/telebirr.png" alt="" id="tpLogo"/></span>
             <div>
               <div class="tp-title" id="tpTitle">Send Proof of Deposit</div>
               <div class="tp-sub" id="tpSub">Deposit <strong>29,999 ETB</strong>, then upload your screenshot. It is forwarded directly to the academy.</div>
@@ -1273,13 +1276,13 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   <div class="wrap">
     <div class="row">
       <div class="b-brand">
-        <img src="assets/elite-noir-xxv-logo.png" alt="Elite Noir XXV" class="footer-logo"/>
+        <img src="elite-noir-xxv-logo.png" alt="Elite Noir XXV" class="footer-logo"/>
         <div>
           <div class="word">ELITE&nbsp;NOIR</div>
           <span class="sub">XXV · By Elite Kickers Academy</span>
         </div>
       </div>
-      <div class="mid">Black is power · Gold is legacy<a href="mailto:elitekickerss@gmail.com" class="mid-email">elitekickerss@gmail.com</a></div>
+      <div class="mid">Black is power · Gold is legacy<a href="/cdn-cgi/l/email-protection#197c75706d7c72707a727c6b6a6a597e74787075377a7674" class="mid-email"><span class="__cf_email__" data-cfemail="0461686d70616f6d676f61767777446369656d682a676b69">[email&#160;protected]</span></a></div>
       <div class="right">
         <a href="tel:+251937131484" aria-label="Phone">+251 937 131 484</a>
         <a href="https://www.instagram.com/elitekickersacademy?utm_source=ig_web_button_share_sheet&amp;igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a>
@@ -1300,7 +1303,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   <div class="success-card">
     <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
     <button class="close-x" id="closeSuccess" aria-label="Close">×</button>
-    <img class="crest" src="assets/elite-noir-xxv-logo.png" alt="Elite Noir XXV"/>
+    <img class="crest" src="elite-noir-xxv-logo.png" alt="Elite Noir XXV"/>
     <h3 class="gold-static" style="background:linear-gradient(180deg,#f5d97a,#c9a14a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">The council has received your name.</h3>
     <p>Thank you. Your submission has been sealed. A member of the house will reply within fourteen days.</p>
     <p id="successPayWrap" style="display:none;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver-dim);margin:-14px 0 30px">Preferred payment · <span id="successPay" style="color:var(--gold-bright)"></span></p>
@@ -1308,7 +1311,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== Hero video rotation + fallback =====
 (function(){
   const media = document.getElementById('heroMedia');
