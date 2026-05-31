@@ -68,7 +68,8 @@ nav.top .links a.active::after{left:0;right:0}
 .mobile-menu a{padding:14px 4px;text-decoration:none;color:var(--ivory-dim);font-family:var(--sans);font-size:12px;letter-spacing:.32em;text-transform:uppercase;border-bottom:1px solid var(--line)}
 .mobile-menu a:last-of-type{border-bottom:none}
 .mobile-menu a.btn-gold{justify-content:center;color:#1a0f00;border-bottom:none}
-@media (max-width:900px){.nav-burger{display:flex}.nav-apply{display:none}}
+@media (max-width:900px){.nav-burger{display:flex}nav.top .nav-apply{display:none}}
+@media (max-width:420px){nav.top .brand .word{font-size:12px;letter-spacing:.26em}nav.top .brand{gap:14px}nav.top .brand svg,nav.top .brand .brand-logo{width:34px;height:34px}}
 @media (max-width:380px){.nav-burger{margin-left:auto}}
 .btn-gold{display:inline-flex;align-items:center;gap:12px;padding:13px 26px;background:linear-gradient(180deg,#f5d97a 0%,#c9a14a 50%,#7a5818 100%);color:#1a0f00;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;border-radius:1px;position:relative;box-shadow:inset 0 1px 0 rgba(255,244,194,.7),inset 0 -1px 0 rgba(74,48,20,.6),0 12px 30px -10px rgba(201,161,74,.45);transition:transform .3s,filter .3s,box-shadow .3s;overflow:hidden}
 .btn-gold::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;animation:btnShine 6s ease-in-out infinite;pointer-events:none}
