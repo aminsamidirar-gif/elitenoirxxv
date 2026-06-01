@@ -1549,23 +1549,28 @@ if (proofFile){
 }
 const telebirrForm = document.getElementById('telebirrForm');
 const tpStatus = document.getElementById('tpStatus');
-const telebirrSink = document.getElementById('telebirrSink');
 if (telebirrForm){
-  let submitting = false;
-  telebirrForm.addEventListener('submit', () => {
-    // native multipart POST to FormSubmit, sent into hidden iframe so the page stays put
-    submitting = true;
+  telebirrForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     tpStatus.classList.remove('err');
     tpStatus.textContent = 'Sending your proof…';
-  });
-  telebirrSink.addEventListener('load', () => {
-    if (!submitting) return; // ignore the initial blank load
-    submitting = false;
-    tpStatus.textContent = '✓ Sent. The academy has received your Telebirr proof.';
-    telebirrForm.reset();
-    fileDrop.classList.remove('has-file');
-    fdText.textContent = 'Tap to upload your Telebirr deposit screenshot';
-    proofPreview.hidden = true; proofPreview.removeAttribute('src');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(telebirrForm) });
+      const data = await res.json();
+      if (data.success) {
+        tpStatus.textContent = '✓ Sent. The academy has received your deposit proof.';
+        telebirrForm.reset();
+        fileDrop.classList.remove('has-file');
+        fdText.textContent = 'Tap to upload your deposit screenshot';
+        proofPreview.hidden = true; proofPreview.removeAttribute('src');
+      } else {
+        tpStatus.classList.add('err');
+        tpStatus.textContent = '✕ ' + (data.message || 'Could not send. Please try again or email us directly.');
+      }
+    } catch (err) {
+      tpStatus.classList.add('err');
+      tpStatus.textContent = '✕ Network error. Please try again or email us directly.';
+    }
   });
 }
 
@@ -1640,10 +1645,10 @@ if (passportFile) {
 // Form validation + success
 const form = document.getElementById('applicationForm');
 const overlay = document.getElementById('successOverlay');
-const appSink = document.getElementById('applicationSink');
 const paySection = document.getElementById('paymentSection');
-let appSubmitting = false;
-form.addEventListener('submit', (e) => {
+const submitBtn = form.querySelector('button[type="submit"]');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
   let ok = true;
   form.querySelectorAll('input, select, textarea').forEach(el => {
     const wrap = el.closest('.field');
@@ -1656,33 +1661,37 @@ form.addEventListener('submit', (e) => {
       else wrap.classList.remove('invalid');
     }
   });
-  // consents
   form.querySelectorAll('.consent[data-required]').forEach(c => {
     const cb = c.querySelector('input');
     if (!cb.checked) { c.classList.add('invalid'); ok = false; }
     else c.classList.remove('invalid');
   });
   if (!ok) {
-    e.preventDefault();
     const first = form.querySelector('.invalid');
     if (first) { const y = first.getBoundingClientRect().top + window.scrollY - window.innerHeight/2; window.scrollTo({ top: y, behavior: 'smooth' }); }
     return;
   }
-  // valid → allow native multipart POST to the hidden iframe (emails the application + passport)
-  appSubmitting = true;
-});
-
-// when the application POST completes inside the hidden iframe, unlock payment + confirm
-appSink.addEventListener('load', () => {
-  if (!appSubmitting) return;
-  appSubmitting = false;
-  paySection.classList.remove('pay-locked');
-  overlay.classList.add('show');
-  document.body.style.overflow = 'hidden';
-  form.reset();
-  if (passportPreview) { passportPreview.hidden = true; passportPreview.removeAttribute('src'); }
-  if (passportDrop) passportDrop.classList.remove('has-file');
-  if (passportText) passportText.textContent = "Tap to upload the player's passport photo";
+  const btnLabel = submitBtn ? submitBtn.innerHTML : '';
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
+  try {
+    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
+    const data = await res.json();
+    if (data.success) {
+      paySection.classList.remove('pay-locked');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+      form.reset();
+      if (passportPreview) { passportPreview.hidden = true; passportPreview.removeAttribute('src'); }
+      if (passportDrop) passportDrop.classList.remove('has-file');
+      if (passportText) passportText.textContent = "Tap to upload the player's passport photo";
+    } else {
+      alert('Could not send your application: ' + (data.message || 'please try again, or email elitenoirxxv@gmail.com directly.'));
+    }
+  } catch (err) {
+    alert('Network error sending your application. Please try again, or email elitenoirxxv@gmail.com directly.');
+  } finally {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = btnLabel; }
+  }
 });
 
 // Live invalid clearing
