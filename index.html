@@ -1148,11 +1148,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       </div>
     </div>
 
-    <form class="application" id="applicationForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" target="application_sink" novalidate>
-      <input type="hidden" name="access_key" value="6faa1a88-3804-4930-9688-b78fe798745c"/>
-      <input type="hidden" name="subject" value="Elite Noir XXV — New Application"/>
-      <input type="hidden" name="from_name" value="Elite Noir XXV Website"/>
-      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+    <form class="application" id="applicationForm" action="https://formsubmit.co/elitenoirxxv@gmail.com" method="POST" enctype="multipart/form-data" target="application_sink" novalidate>
+      <input type="hidden" name="_subject" value="Elite Noir XXV — New Application"/>
+      <input type="hidden" name="_template" value="table"/>
+      <input type="hidden" name="_captcha" value="false"/>
       <fieldset class="fs reveal">
         <legend><span class="num">I.</span><span class="ttl">The Player</span></legend>
         <div class="grid">
@@ -1289,11 +1288,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
               <div class="tp-sub" id="tpSub">Deposit <strong>29,999 ETB</strong>, then upload your screenshot. It is forwarded directly to the academy.</div>
             </div>
           </div>
-          <form class="tp-form" id="telebirrForm" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" target="telebirr_sink">
-            <input type="hidden" name="access_key" value="6faa1a88-3804-4930-9688-b78fe798745c"/>
-            <input type="hidden" name="subject" value="Elite Noir XXV — Deposit Proof"/>
-            <input type="hidden" name="from_name" value="Elite Noir XXV Website"/>
-            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+          <form class="tp-form" id="telebirrForm" action="https://formsubmit.co/elitenoirxxv@gmail.com" method="POST" enctype="multipart/form-data" target="telebirr_sink">
+            <input type="hidden" name="_subject" value="Elite Noir XXV — Deposit Proof"/>
+            <input type="hidden" name="_template" value="table"/>
+            <input type="hidden" name="_captcha" value="false"/>
             <input type="hidden" name="Payment Method" id="tpMethod" value=""/>
             <input type="hidden" name="Account Name" value="Pick Vitor"/>
             <input type="hidden" name="Amount" value="29,999 ETB"/>
@@ -1549,28 +1547,22 @@ if (proofFile){
 }
 const telebirrForm = document.getElementById('telebirrForm');
 const tpStatus = document.getElementById('tpStatus');
+const telebirrSink = document.getElementById('telebirrSink');
 if (telebirrForm){
-  telebirrForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  let submitting = false;
+  telebirrForm.addEventListener('submit', () => {
+    submitting = true;
     tpStatus.classList.remove('err');
     tpStatus.textContent = 'Sending your proof…';
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(telebirrForm) });
-      const data = await res.json();
-      if (data.success) {
-        tpStatus.textContent = '✓ Sent. The academy has received your deposit proof.';
-        telebirrForm.reset();
-        fileDrop.classList.remove('has-file');
-        fdText.textContent = 'Tap to upload your deposit screenshot';
-        proofPreview.hidden = true; proofPreview.removeAttribute('src');
-      } else {
-        tpStatus.classList.add('err');
-        tpStatus.textContent = '✕ ' + (data.message || 'Could not send. Please try again or email us directly.');
-      }
-    } catch (err) {
-      tpStatus.classList.add('err');
-      tpStatus.textContent = '✕ Network error. Please try again or email us directly.';
-    }
+  });
+  telebirrSink.addEventListener('load', () => {
+    if (!submitting) return;
+    submitting = false;
+    tpStatus.textContent = '✓ Sent. The academy has received your deposit proof.';
+    telebirrForm.reset();
+    fileDrop.classList.remove('has-file');
+    fdText.textContent = 'Tap to upload your deposit screenshot';
+    proofPreview.hidden = true; proofPreview.removeAttribute('src');
   });
 }
 
@@ -1646,9 +1638,9 @@ if (passportFile) {
 const form = document.getElementById('applicationForm');
 const overlay = document.getElementById('successOverlay');
 const paySection = document.getElementById('paymentSection');
-const submitBtn = form.querySelector('button[type="submit"]');
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
+const appSink = document.getElementById('applicationSink');
+let appSubmitting = false;
+form.addEventListener('submit', (e) => {
   let ok = true;
   form.querySelectorAll('input, select, textarea').forEach(el => {
     const wrap = el.closest('.field');
@@ -1667,31 +1659,25 @@ form.addEventListener('submit', async (e) => {
     else c.classList.remove('invalid');
   });
   if (!ok) {
+    e.preventDefault();
     const first = form.querySelector('.invalid');
     if (first) { const y = first.getBoundingClientRect().top + window.scrollY - window.innerHeight/2; window.scrollTo({ top: y, behavior: 'smooth' }); }
     return;
   }
-  const btnLabel = submitBtn ? submitBtn.innerHTML : '';
-  if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = 'Sending…'; }
-  try {
-    const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(form) });
-    const data = await res.json();
-    if (data.success) {
-      paySection.classList.remove('pay-locked');
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
-      form.reset();
-      if (passportPreview) { passportPreview.hidden = true; passportPreview.removeAttribute('src'); }
-      if (passportDrop) passportDrop.classList.remove('has-file');
-      if (passportText) passportText.textContent = "Tap to upload the player's passport photo";
-    } else {
-      alert('Could not send your application: ' + (data.message || 'please try again, or email elitenoirxxv@gmail.com directly.'));
-    }
-  } catch (err) {
-    alert('Network error sending your application. Please try again, or email elitenoirxxv@gmail.com directly.');
-  } finally {
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = btnLabel; }
-  }
+  // valid → allow native multipart POST to the hidden iframe (emails the application + passport)
+  appSubmitting = true;
+});
+
+appSink.addEventListener('load', () => {
+  if (!appSubmitting) return;
+  appSubmitting = false;
+  paySection.classList.remove('pay-locked');
+  overlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+  form.reset();
+  if (passportPreview) { passportPreview.hidden = true; passportPreview.removeAttribute('src'); }
+  if (passportDrop) passportDrop.classList.remove('has-file');
+  if (passportText) passportText.textContent = "Tap to upload the player's passport photo";
 });
 
 // Live invalid clearing
