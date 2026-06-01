@@ -172,6 +172,8 @@ section{position:relative;padding:140px 0}
 .kit-feature-list{margin:28px 0 0;padding:0;list-style:none}
 .kit-feature-list li{padding:16px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:baseline;font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ivory);line-height:1.5}
 .kit-feature-list .num{font-family:var(--display);font-style:normal;font-size:12px;letter-spacing:.2em;color:var(--gold)}
+.kit-gallery{margin-top:36px;border:1px solid var(--line)}
+.kit-gallery img{display:block;width:100%;max-height:560px;object-fit:cover;object-position:center 30%}
 .attribute-strip{margin-top:80px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:0}
 @media (max-width:900px){.attribute-strip{grid-template-columns:repeat(2,1fr)}.attribute-strip .att:nth-child(5){grid-column:span 2}}
 .attribute-strip .att{padding:34px 24px;position:relative}
@@ -283,6 +285,10 @@ footer.bottom .right a:hover{color:var(--gold-shine)}
 footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-family:var(--sans);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ivory-faint)}
 
 .scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:9500;background:linear-gradient(90deg,#8a6420,#f5d97a,#c9a14a);box-shadow:0 0 12px rgba(245,217,122,.6);transition:width .1s linear}
+.wa-float{position:fixed;right:18px;bottom:18px;z-index:9400;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#25d366,#1da851);color:#fff;box-shadow:0 8px 24px -6px rgba(37,211,102,.6),0 0 0 1px rgba(255,255,255,.15) inset;transition:transform .3s,box-shadow .3s;animation:waPulse 2.6s ease-in-out infinite}
+.wa-float:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 14px 32px -8px rgba(37,211,102,.75)}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 24px -6px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:0 8px 24px -6px rgba(37,211,102,.6),0 0 0 12px rgba(37,211,102,0)}}
+@media (max-width:600px){.wa-float{width:52px;height:52px;right:14px;bottom:14px}}
 
 /* ===== CINEMATIC LOADING SCREEN ===== */
 #loader{position:fixed;inset:0;z-index:10000;background:radial-gradient(80% 60% at 50% 40%,#0a1430 0%,#04040c 55%,#020207 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;transition:opacity 1s ease,visibility 1s ease}
@@ -472,6 +478,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 </script>
 </head>
 <body>
+
+<a href="https://wa.me/251937131484" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" width="30" height="30"><use href="#wa"/></svg>
+</a>
 
 <!-- ============ CINEMATIC LOADER ============ -->
 <div id="loader">
@@ -740,6 +750,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <circle cx="12" cy="12" r="4"/>
       <circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/>
     </g></symbol>
+    <symbol id="wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2zm0 18.15h-.01c-1.52 0-3.01-.41-4.31-1.18l-.31-.18-3.2.84.85-3.12-.2-.32a8.2 8.2 0 01-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.47-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.11-.22-.17-.47-.29z"/></symbol>
 
     <!-- arrow -->
     <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12 L19 12 M13 6 L19 12 L13 18" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -1018,6 +1029,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
           <li><span class="num">IV</span><span>Player number set never repeated across cycles — built to last</span></li>
         </ul>
       </div>
+    </div>
+
+    <div class="kit-gallery reveal">
+      <img src="kit-crest-closeup.jpg" alt="Close-up of the Elite Noir XXV crowned-lion crest embroidered in gold on the black jersey"/>
     </div>
 
     <div class="attribute-strip reveal">
@@ -1335,6 +1350,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <div class="mid">Black is power · Gold is legacy<a class="mid-email js-email" data-user="elitenoirxxv" data-domain="gmail.com" href="#"></a></div>
       <div class="right">
         <a href="tel:+251937131484" aria-label="Phone">+251 937 131 484</a>
+        <a href="https://wa.me/251937131484" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><svg width="16" height="16"><use href="#wa"/></svg></a>
         <a href="https://www.instagram.com/elitenoir.xxv" target="_blank" rel="noopener noreferrer" aria-label="Elite Noir XXV on Instagram"><svg width="16" height="16"><use href="#ig"/></svg></a>
       </div>
     </div>
