@@ -397,6 +397,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 .pay .copy-btn:hover{background:rgba(201,161,74,.12);color:var(--gold-shine)}
 .pay .copy-btn.copied{background:linear-gradient(180deg,#f5d97a,#c9a14a);color:#1a0f00;border-color:var(--gold)}
 .pay-section{margin-top:60px;padding-top:8px;border-top:1px solid var(--line-blue)}
+.pay-section.pay-locked{display:none}
 .pay-note{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--ivory-faint);margin-top:4px}
 
 /* ===== PARTNERS ===== */
@@ -1150,7 +1151,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       </div>
     </div>
 
-    <form class="application" id="applicationForm" novalidate>
+    <form class="application" id="applicationForm" action="https://formsubmit.co/elitekickerss@gmail.com" method="POST" enctype="multipart/form-data" target="application_sink" novalidate>
+      <input type="hidden" name="_subject" value="Elite Noir XXV — New Application"/>
+      <input type="hidden" name="_template" value="table"/>
+      <input type="hidden" name="_captcha" value="false"/>
       <fieldset class="fs reveal">
         <legend><span class="num">I.</span><span class="ttl">The Player</span></legend>
         <div class="grid">
@@ -1178,6 +1182,15 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
               <option>Noir I · Ages 10 — 13</option>
               <option>Noir II · Ages 14 — 16</option>
             </select>
+          </div>
+          <div class="field full"><label>Passport Photo <span class="req">*</span></label>
+            <label class="file-drop" id="passportDrop">
+              <input type="file" name="attachment" id="passportFile" accept="image/*" required/>
+              <svg class="fd-ic"><use href="#payCard"/></svg>
+              <span class="fd-text" id="passportText">Tap to upload the player's passport photo</span>
+            </label>
+            <img class="proof-preview" id="passportPreview" alt="Passport preview" hidden/>
+            <div class="hint">A clear photo of the player's passport (or a passport-style headshot). Sent securely to the academy.</div>
           </div>
         </div>
       </fieldset>
@@ -1239,11 +1252,11 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
       <div class="form-actions reveal">
         <button type="submit" class="btn-gold">Submit Application <svg width="14" height="14"><use href="#arrow"/></svg></button>
-        <span class="form-note">— Replies within fourteen days, by hand of the council.</span>
+        <span class="form-note">— Payment details unlock once your application is submitted.</span>
       </div>
     </form>
 
-    <div class="pay-section" id="paymentSection">
+    <div class="pay-section pay-locked" id="paymentSection">
       <fieldset class="fs reveal">
         <div class="pay-head"><span class="num">IV.</span><span class="ttl">Membership &amp; Payment</span></div>
 
@@ -1265,7 +1278,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
         <div class="pay-grid">
           <label class="pay"><input type="radio" name="payment" value="Telebirr" data-name="Telebirr" data-acct="0937131484" data-logo="pay/telebirr.png"/><span class="radio"></span><span class="p-logo"><img src="pay/telebirr.png" alt="Telebirr"/></span><span class="p-body"><span class="p-name">Telebirr</span><span class="p-num" data-copy="0937131484">0937131484</span><span class="p-desc">Mobile Money · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="0937131484" aria-label="Copy Telebirr number">Copy</button></label>
           <label class="pay"><input type="radio" name="payment" value="Commercial Bank of Ethiopia" data-name="Commercial Bank of Ethiopia" data-acct="1000530655958" data-logo="pay/cbe.png"/><span class="radio"></span><span class="p-logo"><img src="pay/cbe.png" alt="Commercial Bank of Ethiopia"/></span><span class="p-body"><span class="p-name">Commercial Bank of Ethiopia</span><span class="p-num" data-copy="1000530655958">1000530655958</span><span class="p-desc">CBE · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="1000530655958" aria-label="Copy CBE account">Copy</button></label>
-          <label class="pay"><input type="radio" name="payment" value="Bank of Abyssinia" data-name="Bank of Abyssinia" data-acct="101258303" data-logo="pay/abyssinia.png"/><span class="radio"></span><span class="p-logo"><img src="pay/abyssinia.png" alt="Bank of Abyssinia"/></span><span class="p-body"><span class="p-name">Bank of Abyssinia</span><span class="p-num" data-copy="101258303">101258303</span><span class="p-desc">BoA · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="101258303" aria-label="Copy Bank of Abyssinia account">Copy</button></label>
+          <label class="pay"><input type="radio" name="payment" value="Bank of Abyssinia" data-name="Bank of Abyssinia" data-acct="101258308" data-logo="pay/abyssinia.png"/><span class="radio"></span><span class="p-logo"><img src="pay/abyssinia.png" alt="Bank of Abyssinia"/></span><span class="p-body"><span class="p-name">Bank of Abyssinia</span><span class="p-num" data-copy="101258308">101258308</span><span class="p-desc">BoA · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="101258308" aria-label="Copy Bank of Abyssinia account">Copy</button></label>
           <label class="pay"><input type="radio" name="payment" value="Awash Bank" data-name="Awash Bank" data-acct="01320759433300" data-logo="pay/awash.png"/><span class="radio"></span><span class="p-logo"><img src="pay/awash.png" alt="Awash Bank"/></span><span class="p-body"><span class="p-name">Awash Bank</span><span class="p-num" data-copy="01320759433300">01320759433300</span><span class="p-desc">Awash · Pick Vitor</span></span><button type="button" class="copy-btn" data-copy="01320759433300" aria-label="Copy Awash Bank account">Copy</button></label>
         </div>
 
@@ -1337,15 +1350,15 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
 <!-- ============ SUCCESS ============ -->
 <iframe name="telebirr_sink" id="telebirrSink" style="display:none" title="submission target"></iframe>
+<iframe name="application_sink" id="applicationSink" style="display:none" title="application target"></iframe>
 <div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true">
   <div class="success-card">
     <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
     <button class="close-x" id="closeSuccess" aria-label="Close">×</button>
     <img class="crest" src="elite-noir-xxv-logo.jpg" alt="Elite Noir XXV"/>
-    <h3 class="gold-static" style="background:linear-gradient(180deg,#f5d97a,#c9a14a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">The council has received your name.</h3>
-    <p>Thank you. Your submission has been sealed. A member of the house will reply within fourteen days.</p>
-    <p id="successPayWrap" style="display:none;font-family:var(--sans);font-style:normal;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--silver-dim);margin:-14px 0 30px">Preferred payment · <span id="successPay" style="color:var(--gold-bright)"></span></p>
-    <button class="btn-ghost" id="closeSuccess2">Return to the page</button>
+    <h3 class="gold-static" style="background:linear-gradient(180deg,#f5d97a,#c9a14a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">The council has received your application.</h3>
+    <p>Thank you. Your application and passport photo have been sent to the academy. Your payment details are now unlocked below — complete your deposit to secure the place.</p>
+    <button class="btn-gold" id="closeSuccess2">View Payment Details</button>
   </div>
 </div>
 
@@ -1608,17 +1621,38 @@ if (phone) {
   phone.addEventListener('focus', () => { if (!phone.value) phone.value = '+251 '; });
 }
 
+// Passport photo preview (application form)
+const passportFile = document.getElementById('passportFile');
+const passportDrop = document.getElementById('passportDrop');
+const passportText = document.getElementById('passportText');
+const passportPreview = document.getElementById('passportPreview');
+if (passportFile) {
+  passportFile.addEventListener('change', () => {
+    const f = passportFile.files && passportFile.files[0];
+    if (!f) return;
+    passportText.textContent = f.name;
+    passportDrop.classList.add('has-file');
+    passportPreview.src = URL.createObjectURL(f);
+    passportPreview.hidden = false;
+    passportFile.closest('.field')?.classList.remove('invalid');
+  });
+}
+
 // Form validation + success
 const form = document.getElementById('applicationForm');
 const overlay = document.getElementById('successOverlay');
+const appSink = document.getElementById('applicationSink');
+const paySection = document.getElementById('paymentSection');
+let appSubmitting = false;
 form.addEventListener('submit', (e) => {
-  e.preventDefault();
   let ok = true;
   form.querySelectorAll('input, select, textarea').forEach(el => {
     const wrap = el.closest('.field');
     if (!wrap) return;
     if (el.hasAttribute('required')) {
-      const valid = el.checkValidity() && (el.value || '').toString().trim() !== '';
+      const valid = el.type === 'file'
+        ? (el.files && el.files.length > 0)
+        : (el.checkValidity() && (el.value || '').toString().trim() !== '');
       if (!valid) { wrap.classList.add('invalid'); ok = false; }
       else wrap.classList.remove('invalid');
     }
@@ -1630,19 +1664,26 @@ form.addEventListener('submit', (e) => {
     else c.classList.remove('invalid');
   });
   if (!ok) {
+    e.preventDefault();
     const first = form.querySelector('.invalid');
     if (first) { const y = first.getBoundingClientRect().top + window.scrollY - window.innerHeight/2; window.scrollTo({ top: y, behavior: 'smooth' }); }
     return;
   }
-  // capture chosen payment method for the confirmation copy
-  const pay = document.querySelector('.pay input:checked');
-  const payEl = document.getElementById('successPay');
-  if (payEl) payEl.textContent = pay ? pay.value : '';
-  if (payEl) payEl.parentElement.style.display = pay ? 'block' : 'none';
+  // valid → allow native multipart POST to the hidden iframe (emails the application + passport)
+  appSubmitting = true;
+});
+
+// when the application POST completes inside the hidden iframe, unlock payment + confirm
+appSink.addEventListener('load', () => {
+  if (!appSubmitting) return;
+  appSubmitting = false;
+  paySection.classList.remove('pay-locked');
   overlay.classList.add('show');
   document.body.style.overflow = 'hidden';
   form.reset();
-  document.querySelectorAll('.pay').forEach(p => p.classList.remove('sel'));
+  if (passportPreview) { passportPreview.hidden = true; passportPreview.removeAttribute('src'); }
+  if (passportDrop) passportDrop.classList.remove('has-file');
+  if (passportText) passportText.textContent = "Tap to upload the player's passport photo";
 });
 
 // Live invalid clearing
@@ -1659,7 +1700,14 @@ function closeSuccess() {
   document.body.style.overflow = '';
 }
 document.getElementById('closeSuccess').addEventListener('click', closeSuccess);
-document.getElementById('closeSuccess2').addEventListener('click', closeSuccess);
+document.getElementById('closeSuccess2').addEventListener('click', () => {
+  closeSuccess();
+  const ps = document.getElementById('paymentSection');
+  if (ps && !ps.classList.contains('pay-locked')) {
+    const y = ps.getBoundingClientRect().top + window.scrollY - 90;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+});
 overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSuccess(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSuccess(); });
 </script>
