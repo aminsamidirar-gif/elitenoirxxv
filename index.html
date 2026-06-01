@@ -1148,10 +1148,11 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       </div>
     </div>
 
-    <form class="application" id="applicationForm" action="https://formsubmit.co/elitenoirxxv@gmail.com" method="POST" enctype="multipart/form-data" target="application_sink" novalidate>
+    <form class="application" id="applicationForm" action="https://script.google.com/macros/s/AKfycbw1v2xnhZiO1ewY6f6b4OW6g72i8O7-5vHmyj1xBeHdqiPsNtQg18rH42NMg1YKKCpq/exec" method="POST" target="application_sink" novalidate>
       <input type="hidden" name="_subject" value="Elite Noir XXV — New Application"/>
-      <input type="hidden" name="_template" value="table"/>
-      <input type="hidden" name="_captcha" value="false"/>
+      <input type="hidden" name="_fileData" id="appFileData" value=""/>
+      <input type="hidden" name="_fileName" id="appFileName" value=""/>
+      <input type="hidden" name="_fileType" id="appFileType" value=""/>
       <fieldset class="fs reveal">
         <legend><span class="num">I.</span><span class="ttl">The Player</span></legend>
         <div class="grid">
@@ -1288,10 +1289,11 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
               <div class="tp-sub" id="tpSub">Deposit <strong>29,999 ETB</strong>, then upload your screenshot. It is forwarded directly to the academy.</div>
             </div>
           </div>
-          <form class="tp-form" id="telebirrForm" action="https://formsubmit.co/elitenoirxxv@gmail.com" method="POST" enctype="multipart/form-data" target="telebirr_sink">
+          <form class="tp-form" id="telebirrForm" action="https://script.google.com/macros/s/AKfycbw1v2xnhZiO1ewY6f6b4OW6g72i8O7-5vHmyj1xBeHdqiPsNtQg18rH42NMg1YKKCpq/exec" method="POST" target="telebirr_sink">
             <input type="hidden" name="_subject" value="Elite Noir XXV — Deposit Proof"/>
-            <input type="hidden" name="_template" value="table"/>
-            <input type="hidden" name="_captcha" value="false"/>
+            <input type="hidden" name="_fileData" id="tpFileData" value=""/>
+            <input type="hidden" name="_fileName" id="tpFileName" value=""/>
+            <input type="hidden" name="_fileType" id="tpFileType" value=""/>
             <input type="hidden" name="Payment Method" id="tpMethod" value=""/>
             <input type="hidden" name="Account Name" value="Pick Vitor"/>
             <input type="hidden" name="Amount" value="29,999 ETB"/>
@@ -1550,10 +1552,24 @@ const tpStatus = document.getElementById('tpStatus');
 const telebirrSink = document.getElementById('telebirrSink');
 if (telebirrForm){
   let submitting = false;
-  telebirrForm.addEventListener('submit', () => {
-    submitting = true;
+  telebirrForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!telebirrForm.reportValidity()) return;
+    const f = proofFile.files && proofFile.files[0];
     tpStatus.classList.remove('err');
     tpStatus.textContent = 'Sending your proof…';
+    const finishSubmit = () => { submitting = true; telebirrForm.submit(); };
+    if (f) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        document.getElementById('tpFileData').value = (String(reader.result).split(',')[1] || '');
+        document.getElementById('tpFileName').value = f.name;
+        document.getElementById('tpFileType').value = f.type || 'image/jpeg';
+        finishSubmit();
+      };
+      reader.onerror = finishSubmit;
+      reader.readAsDataURL(f);
+    } else { finishSubmit(); }
   });
   telebirrSink.addEventListener('load', () => {
     if (!submitting) return;
@@ -1664,8 +1680,21 @@ form.addEventListener('submit', (e) => {
     if (first) { const y = first.getBoundingClientRect().top + window.scrollY - window.innerHeight/2; window.scrollTo({ top: y, behavior: 'smooth' }); }
     return;
   }
-  // valid → allow native multipart POST to the hidden iframe (emails the application + passport)
-  appSubmitting = true;
+  // valid → read passport as base64 into hidden fields, then submit into the hidden iframe
+  e.preventDefault();
+  const file = passportFile.files[0];
+  const finishSubmit = () => { appSubmitting = true; form.submit(); };
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      document.getElementById('appFileData').value = (String(reader.result).split(',')[1] || '');
+      document.getElementById('appFileName').value = file.name;
+      document.getElementById('appFileType').value = file.type || 'image/jpeg';
+      finishSubmit();
+    };
+    reader.onerror = finishSubmit;
+    reader.readAsDataURL(file);
+  } else { finishSubmit(); }
 });
 
 appSink.addEventListener('load', () => {
