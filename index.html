@@ -174,6 +174,8 @@ section{position:relative;padding:140px 0}
 .kit-feature-list .num{font-family:var(--display);font-style:normal;font-size:12px;letter-spacing:.2em;color:var(--gold)}
 .kit-gallery{margin-top:36px;border:1px solid var(--line)}
 .kit-gallery img{display:block;width:100%;max-height:560px;object-fit:cover;object-position:center 30%}
+.kit-duo{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.kit-duo .kit-frame{aspect-ratio:3/4;padding:18px}
 .attribute-strip{margin-top:80px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);gap:0}
 @media (max-width:900px){.attribute-strip{grid-template-columns:repeat(2,1fr)}.attribute-strip .att:nth-child(5){grid-column:span 2}}
 .attribute-strip .att{padding:34px 24px;position:relative}
@@ -289,6 +291,12 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 .wa-float:hover{transform:translateY(-3px) scale(1.06);box-shadow:0 14px 32px -8px rgba(37,211,102,.75)}
 @keyframes waPulse{0%,100%{box-shadow:0 8px 24px -6px rgba(37,211,102,.6),0 0 0 0 rgba(37,211,102,.45)}50%{box-shadow:0 8px 24px -6px rgba(37,211,102,.6),0 0 0 12px rgba(37,211,102,0)}}
 @media (max-width:600px){.wa-float{width:52px;height:52px;right:14px;bottom:14px}}
+.reg-badge{margin-top:34px;display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;padding:16px 28px;border:1px solid var(--line-strong);background:linear-gradient(120deg,rgba(201,161,74,.08),rgba(10,20,48,.35));border-radius:2px}
+.reg-badge .rb-label{font-family:var(--sans);font-size:10.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--silver-dim)}
+.reg-badge .rb-date{font-family:var(--display);font-weight:600;font-size:26px;background:linear-gradient(180deg,#fff4c2,#c9a14a 60%,#8a6420);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.reg-badge .rb-wa{display:inline-flex;align-items:center;gap:8px;font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#25d366;text-decoration:none;padding-left:20px;border-left:1px solid var(--line);transition:color .25s}
+.reg-badge .rb-wa:hover{color:#3ce87a}
+@media (max-width:520px){.reg-badge .rb-wa{padding-left:0;border-left:none}}
 
 /* ===== CINEMATIC LOADING SCREEN ===== */
 #loader{position:fixed;inset:0;z-index:10000;background:radial-gradient(80% 60% at 50% 40%,#0a1430 0%,#04040c 55%,#020207 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;transition:opacity 1s ease,visibility 1s ease}
@@ -478,10 +486,6 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 </script>
 </head>
 <body>
-
-<a href="https://wa.me/251937131484" target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Chat on WhatsApp">
-  <svg viewBox="0 0 24 24" width="30" height="30"><use href="#wa"/></svg>
-</a>
 
 <!-- ============ CINEMATIC LOADER ============ -->
 <div id="loader">
@@ -1011,11 +1015,20 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     </div>
 
     <div class="kit-grid">
-      <div class="kit-frame reveal">
-        <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
-        <div class="stage">
-          <span class="tag">Edition · MMXXV</span>
-          <img class="kit-img" src="elite-noir-kit.jpg" alt="Elite Noir XXV match kit — jersey, shorts, socks and boots in black and gold"/>
+      <div class="kit-duo reveal">
+        <div class="kit-frame">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="stage">
+            <span class="tag">Edition · MMXXV</span>
+            <img class="kit-img" src="elite-noir-kit.jpg" alt="Elite Noir XXV match kit — jersey, shorts, socks and boots in black and gold"/>
+          </div>
+        </div>
+        <div class="kit-frame">
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+          <div class="stage">
+            <span class="tag">Crest · Detail</span>
+            <img class="kit-img" src="kit-crest-closeup.jpg" alt="Close-up of the Elite Noir XXV crowned-lion crest embroidered in gold"/>
+          </div>
         </div>
       </div>
       <div>
@@ -1029,10 +1042,6 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
           <li><span class="num">IV</span><span>Player number set never repeated across cycles — built to last</span></li>
         </ul>
       </div>
-    </div>
-
-    <div class="kit-gallery reveal">
-      <img src="kit-crest-closeup.jpg" alt="Close-up of the Elite Noir XXV crowned-lion crest embroidered in gold on the black jersey"/>
     </div>
 
     <div class="attribute-strip reveal">
@@ -1052,6 +1061,11 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <div class="rule reveal">Availability · MMXXVI Cycle</div>
       <h2 class="h-display h2 reveal">Thirty-six seats remain.</h2>
       <p class="sub reveal">Two grades. Fifty total. Once a grade closes, the next intake opens in twelve months.</p>
+      <div class="reg-badge reveal">
+        <span class="rb-label">Registration Opens</span>
+        <span class="rb-date">June 28</span>
+        <a class="rb-wa" href="https://wa.me/251937131484" target="_blank" rel="noopener noreferrer"><svg width="15" height="15"><use href="#wa"/></svg> Ask on WhatsApp</a>
+      </div>
     </div>
 
     <div class="spots">
