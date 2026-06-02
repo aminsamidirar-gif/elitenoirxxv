@@ -48,7 +48,8 @@ nav.top .brand{display:flex;align-items:center;gap:20px;text-decoration:none}
 nav.top .brand svg,nav.top .brand .brand-logo{width:38px;height:38px;display:block}
 nav.top .brand .brand-logo{border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(201,161,74,.35),0 0 18px -2px rgba(201,161,74,.4)}
 nav.top .brand .word{font-family:var(--display);font-weight:600;letter-spacing:.34em;font-size:13px;color:var(--ivory);white-space:nowrap}
-nav.top .links{display:flex;gap:30px;margin-left:40px;font-family:var(--sans);font-weight:300;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase}
+nav.top .links{display:flex;gap:26px;margin-left:32px;font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;min-width:0}
+nav.top .links a{white-space:nowrap}
 nav.top .links a{color:var(--ivory-dim);text-decoration:none;transition:color .25s;position:relative}
 nav.top .links a:hover{color:var(--gold-bright)}
 nav.top .links a::after{content:"";position:absolute;left:50%;right:50%;bottom:-6px;height:1px;background:var(--gold);transition:left .3s,right .3s}
@@ -69,12 +70,13 @@ nav.top .links a.active::after{left:0;right:0}
 @media (max-width:900px){.nav-burger{display:flex}nav.top .nav-apply{display:none}}
 @media (max-width:420px){nav.top .brand .word{font-size:12px;letter-spacing:.26em}nav.top .brand{gap:14px}nav.top .brand svg,nav.top .brand .brand-logo{width:34px;height:34px}}
 @media (max-width:380px){.nav-burger{margin-left:auto}}
-.lang-flags{display:flex;gap:10px;align-items:center;flex:none;padding-left:32px;margin:0 36px 0 24px;border-left:1px solid var(--line)}
+.lang-flags{display:flex;gap:9px;align-items:center;flex:none;padding-left:24px;margin:0 24px 0 16px;border-left:1px solid var(--line)}
 .lang-flag{width:30px;height:20px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;border-radius:3px;overflow:hidden;opacity:.62;transition:opacity .25s,transform .25s,box-shadow .25s;display:flex}
 .lang-flag svg{width:100%;height:100%;display:block}
 .lang-flag:hover{opacity:1;transform:translateY(-1px)}
 .lang-flag.active{opacity:1;box-shadow:0 0 0 1px var(--gold),0 0 12px -2px rgba(201,161,74,.5)}
-nav.top .nav-apply{flex:none}
+nav.top .nav-apply{flex:none;white-space:nowrap}
+@media (max-width:1200px){nav.top .links{gap:20px;letter-spacing:.18em}.lang-flags{margin:0 16px 0 12px;padding-left:18px}}
 @media (max-width:900px){.lang-flags{margin-left:auto;padding-left:0;border-left:none}}
 /* hide Google Translate injected chrome */
 .goog-te-banner-frame,.skiptranslate{display:none!important}
@@ -1823,11 +1825,18 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSucce
     if (!combo){ if ((tries||0) < 40){ setTimeout(()=>fireCombo(lang,(tries||0)+1), 150); } return; }
     combo.value = (lang === 'en' ? '' : lang);
     combo.dispatchEvent(new Event('change'));
-    // 'en' sometimes needs a second nudge to restore the original
-    if (lang === 'en'){ setTimeout(()=>{ combo.value=''; combo.dispatchEvent(new Event('change')); }, 120); }
   }
   function applyLang(lang){ fireCombo(lang, 0); }
   function markActive(lang){ document.querySelectorAll('.lang-flag').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang)); }
+  function setCookie(lang){
+    const host = location.hostname;
+    const variants = ['', ';domain='+host, ';domain=.'+host];
+    if (lang === 'en'){
+      variants.forEach(d => { document.cookie = 'googtrans=;path=/'+d+';expires=Thu, 01 Jan 1970 00:00:00 GMT'; });
+    } else {
+      variants.forEach(d => { document.cookie = 'googtrans=/en/'+lang+';path=/'+d; });
+    }
+  }
 
   const saved = (function(){ try { return localStorage.getItem('en_lang'); } catch(e){ return null; } })() || 'en';
   markActive(saved);
@@ -1839,7 +1848,9 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSucce
       const lang = btn.dataset.lang;
       markActive(lang);
       try { localStorage.setItem('en_lang', lang); } catch(e){}
-      if (gtReady) applyLang(lang); else { pending = lang; loadGT(); }
+      // cookie + reload = reliable in BOTH directions (incl. back to English)
+      setCookie(lang);
+      location.reload();
     });
   });
 })();
