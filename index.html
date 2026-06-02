@@ -69,12 +69,13 @@ nav.top .links a.active::after{left:0;right:0}
 @media (max-width:900px){.nav-burger{display:flex}nav.top .nav-apply{display:none}}
 @media (max-width:420px){nav.top .brand .word{font-size:12px;letter-spacing:.26em}nav.top .brand{gap:14px}nav.top .brand svg,nav.top .brand .brand-logo{width:34px;height:34px}}
 @media (max-width:380px){.nav-burger{margin-left:auto}}
-.lang-flags{display:flex;gap:8px;align-items:center;margin-left:4px}
+.lang-flags{display:flex;gap:8px;align-items:center;flex:none;padding-left:22px;margin-left:8px;border-left:1px solid var(--line)}
 .lang-flag{width:30px;height:20px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;border-radius:3px;overflow:hidden;opacity:.62;transition:opacity .25s,transform .25s,box-shadow .25s;display:flex}
 .lang-flag svg{width:100%;height:100%;display:block}
 .lang-flag:hover{opacity:1;transform:translateY(-1px)}
 .lang-flag.active{opacity:1;box-shadow:0 0 0 1px var(--gold),0 0 12px -2px rgba(201,161,74,.5)}
-@media (max-width:900px){.lang-flags{margin-left:auto;margin-right:6px}}
+nav.top .nav-apply{flex:none}
+@media (max-width:900px){.lang-flags{margin-left:auto;padding-left:0;border-left:none}}
 /* hide Google Translate injected chrome */
 .goog-te-banner-frame,.skiptranslate{display:none!important}
 body{top:0!important}
@@ -797,7 +798,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     </div>
     <div class="lang-flags" id="langFlags" role="group" aria-label="Translate site">
       <button type="button" class="lang-flag" data-lang="en" title="English" aria-label="English">
-        <svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="2.4"/><path d="M0 0l24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="4"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="2.4"/></svg>
+        <svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#B22234"/><g fill="#fff"><rect y="1.23" width="24" height="1.23"/><rect y="3.69" width="24" height="1.23"/><rect y="6.15" width="24" height="1.23"/><rect y="8.62" width="24" height="1.23"/><rect y="11.08" width="24" height="1.23"/><rect y="13.54" width="24" height="1.23"/></g><rect width="10.5" height="8.62" fill="#3C3B6E"/></svg>
       </button>
       <button type="button" class="lang-flag" data-lang="es" title="Español" aria-label="Español">
         <svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></svg>
@@ -1798,42 +1799,44 @@ document.getElementById('closeSuccess2').addEventListener('click', () => {
 overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSuccess(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSuccess(); });
 
-// ===== Language flags (Google Translate, whole-page ES/FR) =====
+// ===== Language flags (Google Translate, whole-page EN/ES/FR) =====
 (function(){
-  function setCookie(name,value){
-    const host = location.hostname;
-    document.cookie = name+"="+value+";path=/";
-    document.cookie = name+"="+value+";path=/;domain="+host;
-    if (host.split('.').length>1) document.cookie = name+"="+value+";path=/;domain=."+host;
-  }
-  function translateTo(lang){
-    if (lang === 'en') { setCookie('googtrans','/en/en'); }
-    else { setCookie('googtrans','/en/'+lang); }
-    try { localStorage.setItem('en_lang', lang); } catch(e){}
-  }
-  // load Google Translate element once
+  let gtReady = false, pending = null;
   window.googleTranslateElementInit = function(){
     new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,es,fr', autoDisplay:false }, 'googTranslateHost');
+    gtReady = true;
+    if (pending) { applyLang(pending); pending = null; }
   };
   function loadGT(){
     if (document.getElementById('gt-script')) return;
-    const host = document.createElement('div'); host.id='googTranslateHost'; host.style.display='none'; document.body.appendChild(host);
+    let host = document.getElementById('googTranslateHost');
+    if (!host){ host=document.createElement('div'); host.id='googTranslateHost'; host.style.display='none'; document.body.appendChild(host); }
     const s = document.createElement('script'); s.id='gt-script';
     s.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
     document.body.appendChild(s);
   }
-  const saved = (function(){ try { return localStorage.getItem('en_lang'); } catch(e){ return null; } })() || 'en';
+  function fireCombo(lang, tries){
+    const combo = document.querySelector('select.goog-te-combo');
+    if (!combo){ if ((tries||0) < 40){ setTimeout(()=>fireCombo(lang,(tries||0)+1), 150); } return; }
+    combo.value = (lang === 'en' ? '' : lang);
+    combo.dispatchEvent(new Event('change'));
+    // 'en' sometimes needs a second nudge to restore the original
+    if (lang === 'en'){ setTimeout(()=>{ combo.value=''; combo.dispatchEvent(new Event('change')); }, 120); }
+  }
+  function applyLang(lang){ fireCombo(lang, 0); }
   function markActive(lang){ document.querySelectorAll('.lang-flag').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang)); }
+
+  const saved = (function(){ try { return localStorage.getItem('en_lang'); } catch(e){ return null; } })() || 'en';
   markActive(saved);
-  if (saved && saved!=='en') { translateTo(saved); loadGT(); }
+  loadGT();
+  if (saved !== 'en'){ if (gtReady) applyLang(saved); else pending = saved; }
 
   document.querySelectorAll('.lang-flag').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const lang = btn.dataset.lang;
       markActive(lang);
-      translateTo(lang);
-      // reload so the googtrans cookie is applied cleanly across the whole page
-      location.reload();
+      try { localStorage.setItem('en_lang', lang); } catch(e){}
+      if (gtReady) applyLang(lang); else { pending = lang; loadGT(); }
     });
   });
 })();
