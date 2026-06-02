@@ -45,11 +45,12 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 nav.top{position:fixed;top:0;left:0;right:0;z-index:200;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);background:rgba(2,2,7,.62);border-bottom:1px solid var(--line)}
 nav.top .inner{max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:flex-start;gap:0}
 nav.top .links{margin-right:auto}
+.nav-flag-wrap{display:flex;align-items:center;flex:none}
 nav.top .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 nav.top .brand svg,nav.top .brand .brand-logo{width:38px;height:38px;display:block}
 nav.top .brand .brand-logo{border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(201,161,74,.35),0 0 18px -2px rgba(201,161,74,.4)}
 nav.top .brand .word{font-family:var(--display);font-weight:600;letter-spacing:.34em;font-size:13px;color:var(--ivory);white-space:nowrap}
-nav.top .links{display:flex;gap:24px;margin-left:24px;font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.22em;text-transform:uppercase;min-width:0}
+nav.top .links{display:flex;gap:18px;margin-left:20px;margin-right:auto;font-family:var(--sans);font-weight:300;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;min-width:0}
 nav.top .links a{white-space:nowrap}
 nav.top .links a{color:var(--ivory-dim);text-decoration:none;transition:color .25s;position:relative}
 nav.top .links a:hover{color:var(--gold-bright)}
@@ -71,13 +72,13 @@ nav.top .links a.active::after{left:0;right:0}
 @media (max-width:900px){.nav-burger{display:flex}nav.top .nav-apply{display:none}}
 @media (max-width:420px){nav.top .brand .word{font-size:12px;letter-spacing:.26em}nav.top .brand{gap:14px}nav.top .brand svg,nav.top .brand .brand-logo{width:34px;height:34px}}
 @media (max-width:380px){.nav-burger{margin-left:auto}}
-.lang-flags{display:flex;gap:9px;align-items:center;flex:none;padding-left:24px;margin:0 24px 0 16px;border-left:1px solid var(--line)}
-.lang-flag{width:30px;height:20px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;border-radius:3px;overflow:hidden;opacity:.62;transition:opacity .25s,transform .25s,box-shadow .25s;display:flex}
+.lang-flags{display:flex;gap:8px;align-items:center;flex:none;padding-left:20px;margin:0 20px 0 14px;border-left:1px solid var(--line)}
+.lang-flag{width:26px;height:18px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;border-radius:3px;overflow:hidden;opacity:.62;transition:opacity .25s,transform .25s,box-shadow .25s;display:flex;flex:none}
 .lang-flag svg{width:100%;height:100%;display:block}
 .lang-flag:hover{opacity:1;transform:translateY(-1px)}
 .lang-flag.active{opacity:1;box-shadow:0 0 0 1px var(--gold),0 0 12px -2px rgba(201,161,74,.5)}
 nav.top .nav-apply{flex:none;white-space:nowrap}
-@media (max-width:1200px){nav.top .links{gap:20px;letter-spacing:.18em}.lang-flags{margin:0 16px 0 12px;padding-left:18px}}
+@media (max-width:1200px){nav.top .links{gap:14px;letter-spacing:.12em;font-size:10px}.lang-flags{margin:0 12px 0 10px;padding-left:14px}.lang-flag{width:24px;height:16px}}
 @media (max-width:900px){.lang-flags{margin-left:auto;padding-left:0;border-left:none}}
 /* hide Google Translate injected chrome */
 .goog-te-banner-frame,.skiptranslate{display:none!important}
