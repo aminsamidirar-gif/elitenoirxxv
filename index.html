@@ -806,6 +806,9 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <button type="button" class="lang-flag" data-lang="fr" title="Français" aria-label="Français">
         <svg viewBox="0 0 24 16"><rect width="8" height="16" fill="#0055A4"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#EF4135"/></svg>
       </button>
+      <button type="button" class="lang-flag" data-lang="it" title="Italiano" aria-label="Italiano">
+        <svg viewBox="0 0 24 16"><rect width="8" height="16" fill="#009246"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#CE2B37"/></svg>
+      </button>
     </div>
     <a href="#apply" class="btn-gold nav-apply">Apply Now <svg width="14" height="14"><use href="#arrow"/></svg></a>
     <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
@@ -1803,7 +1806,7 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSucce
 (function(){
   let gtReady = false, pending = null;
   window.googleTranslateElementInit = function(){
-    new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,es,fr', autoDisplay:false }, 'googTranslateHost');
+    new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,es,fr,it', autoDisplay:false }, 'googTranslateHost');
     gtReady = true;
     if (pending) { applyLang(pending); pending = null; }
   };
