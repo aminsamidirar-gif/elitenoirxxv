@@ -43,12 +43,13 @@ body::before{content:"";position:fixed;inset:0;background:radial-gradient(1200px
 .wrap{max-width:1280px;margin:0 auto;padding:0 56px}
 @media (max-width:760px){.wrap{padding:0 24px}}
 nav.top{position:fixed;top:0;left:0;right:0;z-index:200;backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);background:rgba(2,2,7,.62);border-bottom:1px solid var(--line)}
-nav.top .inner{max-width:1280px;margin:0 auto;padding:18px 56px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-nav.top .brand{display:flex;align-items:center;gap:20px;text-decoration:none}
+nav.top .inner{max-width:1280px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:flex-start;gap:0}
+nav.top .links{margin-right:auto}
+nav.top .brand{display:flex;align-items:center;gap:14px;text-decoration:none}
 nav.top .brand svg,nav.top .brand .brand-logo{width:38px;height:38px;display:block}
 nav.top .brand .brand-logo{border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px rgba(201,161,74,.35),0 0 18px -2px rgba(201,161,74,.4)}
 nav.top .brand .word{font-family:var(--display);font-weight:600;letter-spacing:.34em;font-size:13px;color:var(--ivory);white-space:nowrap}
-nav.top .links{display:flex;gap:26px;margin-left:32px;font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;min-width:0}
+nav.top .links{display:flex;gap:24px;margin-left:24px;font-family:var(--sans);font-weight:300;font-size:11px;letter-spacing:.22em;text-transform:uppercase;min-width:0}
 nav.top .links a{white-space:nowrap}
 nav.top .links a{color:var(--ivory-dim);text-decoration:none;transition:color .25s;position:relative}
 nav.top .links a:hover{color:var(--gold-bright)}
@@ -1826,7 +1827,6 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSucce
     combo.value = (lang === 'en' ? '' : lang);
     combo.dispatchEvent(new Event('change'));
   }
-  function applyLang(lang){ fireCombo(lang, 0); }
   function markActive(lang){ document.querySelectorAll('.lang-flag').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang)); }
   function setCookie(lang){
     const host = location.hostname;
@@ -1837,19 +1837,31 @@ document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSucce
       variants.forEach(d => { document.cookie = 'googtrans=/en/'+lang+';path=/'+d; });
     }
   }
+  function currentLang(){
+    const m = document.cookie.match(/googtrans=\/en\/(es|fr|it)/);
+    return m ? m[1] : 'en';
+  }
 
-  const saved = (function(){ try { return localStorage.getItem('en_lang'); } catch(e){ return null; } })() || 'en';
-  markActive(saved);
+  // Always start in English on a FRESH visit. A flag click sets a one-shot
+  // session marker so its reload is allowed to apply the chosen language.
+  const justSwitched = sessionStorage.getItem('en_switch');
+  if (!justSwitched && currentLang() !== 'en'){
+    setCookie('en');
+    location.reload();
+    return;
+  }
+  if (justSwitched) sessionStorage.removeItem('en_switch');
+
+  const cur = currentLang();
+  markActive(cur);
   loadGT();
-  if (saved !== 'en'){ if (gtReady) applyLang(saved); else pending = saved; }
 
   document.querySelectorAll('.lang-flag').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const lang = btn.dataset.lang;
       markActive(lang);
-      try { localStorage.setItem('en_lang', lang); } catch(e){}
-      // cookie + reload = reliable in BOTH directions (incl. back to English)
       setCookie(lang);
+      sessionStorage.setItem('en_switch','1');
       location.reload();
     });
   });
