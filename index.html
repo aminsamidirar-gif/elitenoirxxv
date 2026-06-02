@@ -69,6 +69,17 @@ nav.top .links a.active::after{left:0;right:0}
 @media (max-width:900px){.nav-burger{display:flex}nav.top .nav-apply{display:none}}
 @media (max-width:420px){nav.top .brand .word{font-size:12px;letter-spacing:.26em}nav.top .brand{gap:14px}nav.top .brand svg,nav.top .brand .brand-logo{width:34px;height:34px}}
 @media (max-width:380px){.nav-burger{margin-left:auto}}
+.lang-flags{display:flex;gap:8px;align-items:center;margin-left:4px}
+.lang-flag{width:30px;height:20px;padding:0;border:1px solid var(--line);background:none;cursor:pointer;border-radius:3px;overflow:hidden;opacity:.62;transition:opacity .25s,transform .25s,box-shadow .25s;display:flex}
+.lang-flag svg{width:100%;height:100%;display:block}
+.lang-flag:hover{opacity:1;transform:translateY(-1px)}
+.lang-flag.active{opacity:1;box-shadow:0 0 0 1px var(--gold),0 0 12px -2px rgba(201,161,74,.5)}
+@media (max-width:900px){.lang-flags{margin-left:auto;margin-right:6px}}
+/* hide Google Translate injected chrome */
+.goog-te-banner-frame,.skiptranslate{display:none!important}
+body{top:0!important}
+#goog-gt-tt,.goog-te-balloon-frame{display:none!important}
+.goog-text-highlight{background:none!important;box-shadow:none!important}
 .btn-gold{display:inline-flex;align-items:center;gap:12px;padding:13px 26px;background:linear-gradient(180deg,#f5d97a 0%,#c9a14a 50%,#7a5818 100%);color:#1a0f00;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.32em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;border-radius:1px;position:relative;box-shadow:inset 0 1px 0 rgba(255,244,194,.7),inset 0 -1px 0 rgba(74,48,20,.6),0 12px 30px -10px rgba(201,161,74,.45);transition:transform .3s,filter .3s,box-shadow .3s;overflow:hidden}
 .btn-gold::before{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;background-position:200% 0;animation:btnShine 6s ease-in-out infinite;pointer-events:none}
 @keyframes btnShine{0%,100%{background-position:200% 0}50%{background-position:-100% 0}}
@@ -784,6 +795,17 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <a href="#availability">Availability</a>
       <a href="#partners">Partners</a>
     </div>
+    <div class="lang-flags" id="langFlags" role="group" aria-label="Translate site">
+      <button type="button" class="lang-flag" data-lang="en" title="English" aria-label="English">
+        <svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#fff" stroke-width="2.4"/><path d="M0 0l24 16M24 0L0 16" stroke="#C8102E" stroke-width="1.2"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="4"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="2.4"/></svg>
+      </button>
+      <button type="button" class="lang-flag" data-lang="es" title="Español" aria-label="Español">
+        <svg viewBox="0 0 24 16"><rect width="24" height="16" fill="#AA151B"/><rect y="4" width="24" height="8" fill="#F1BF00"/></svg>
+      </button>
+      <button type="button" class="lang-flag" data-lang="fr" title="Français" aria-label="Français">
+        <svg viewBox="0 0 24 16"><rect width="8" height="16" fill="#0055A4"/><rect x="8" width="8" height="16" fill="#fff"/><rect x="16" width="8" height="16" fill="#EF4135"/></svg>
+      </button>
+    </div>
     <a href="#apply" class="btn-gold nav-apply">Apply Now <svg width="14" height="14"><use href="#arrow"/></svg></a>
     <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1217,6 +1239,19 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
             </label>
             <img class="proof-preview" id="passportPreview" alt="Passport preview" hidden/>
             <div class="hint">A clear photo of the player's passport (or a passport-style headshot). Sent securely to the academy.</div>
+          </div>
+          <div class="field"><label>Blood Type <span class="req">*</span></label>
+            <select name="player_blood" required>
+              <option value="">— Select —</option>
+              <option>A+</option><option>A−</option><option>B+</option><option>B−</option>
+              <option>AB+</option><option>AB−</option><option>O+</option><option>O−</option>
+              <option>Unknown</option>
+            </select>
+          </div>
+          <div class="field"><label>Allergies (if any)</label><input type="text" name="player_allergies" placeholder="e.g. penicillin, peanuts — or leave blank"/></div>
+          <div class="field full"><label>Medical Conditions the Academy Should Know <span class="req">*</span></label>
+            <textarea name="player_medical" required placeholder="Asthma, past injuries, medication, or anything our coaches & medical staff must be aware of. Write 'None' if not applicable."></textarea>
+            <div class="hint">Kept strictly confidential — shared only with our coaching and medical staff for the player's safety.</div>
           </div>
         </div>
       </fieldset>
@@ -1762,6 +1797,46 @@ document.getElementById('closeSuccess2').addEventListener('click', () => {
 });
 overlay.addEventListener('click', (e) => { if (e.target === overlay) closeSuccess(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSuccess(); });
+
+// ===== Language flags (Google Translate, whole-page ES/FR) =====
+(function(){
+  function setCookie(name,value){
+    const host = location.hostname;
+    document.cookie = name+"="+value+";path=/";
+    document.cookie = name+"="+value+";path=/;domain="+host;
+    if (host.split('.').length>1) document.cookie = name+"="+value+";path=/;domain=."+host;
+  }
+  function translateTo(lang){
+    if (lang === 'en') { setCookie('googtrans','/en/en'); }
+    else { setCookie('googtrans','/en/'+lang); }
+    try { localStorage.setItem('en_lang', lang); } catch(e){}
+  }
+  // load Google Translate element once
+  window.googleTranslateElementInit = function(){
+    new google.translate.TranslateElement({ pageLanguage:'en', includedLanguages:'en,es,fr', autoDisplay:false }, 'googTranslateHost');
+  };
+  function loadGT(){
+    if (document.getElementById('gt-script')) return;
+    const host = document.createElement('div'); host.id='googTranslateHost'; host.style.display='none'; document.body.appendChild(host);
+    const s = document.createElement('script'); s.id='gt-script';
+    s.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(s);
+  }
+  const saved = (function(){ try { return localStorage.getItem('en_lang'); } catch(e){ return null; } })() || 'en';
+  function markActive(lang){ document.querySelectorAll('.lang-flag').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang)); }
+  markActive(saved);
+  if (saved && saved!=='en') { translateTo(saved); loadGT(); }
+
+  document.querySelectorAll('.lang-flag').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const lang = btn.dataset.lang;
+      markActive(lang);
+      translateTo(lang);
+      // reload so the googtrans cookie is applied cleanly across the whole page
+      location.reload();
+    });
+  });
+})();
 </script>
 </body>
 </html>
