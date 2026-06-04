@@ -442,6 +442,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 .path-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
 @media (max-width:760px){.path-grid{grid-template-columns:1fr}}
 .path-card{position:relative;padding:34px 30px;background:linear-gradient(180deg,rgba(10,16,38,.55),rgba(4,5,14,.92));border:1px solid var(--line-blue);overflow:hidden;transition:border-color .4s,transform .4s}
+@media (min-width:761px){.path-grid > .path-card:last-child:nth-child(odd){grid-column:1 / -1;max-width:calc(50% - 10px);justify-self:center}}
 .path-card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
 .path-flag{width:46px;height:31px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.12),0 6px 16px -6px rgba(0,0,0,.7);margin-bottom:18px}
 .path-flag svg,.path-flag img{width:100%;height:100%;display:block;object-fit:cover}
