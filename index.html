@@ -1591,14 +1591,19 @@ setTimeout(() => document.getElementById('loader')?.classList.add('done'), 4000)
   const nav = document.querySelector('nav.top');
   const links = [...document.querySelectorAll('nav.top .links a')];
   const map = links.map(a => ({ a, sec: document.querySelector(a.getAttribute('href')) })).filter(x => x.sec);
+  const absTop = (el) => el.getBoundingClientRect().top + window.scrollY;
   const onScroll = () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
-    const y = window.scrollY + window.innerHeight * 0.35;
-    let cur = null;
-    for (const m of map) if (m.sec.offsetTop <= y) cur = m.a;
+    const probe = window.scrollY + window.innerHeight * 0.32;
+    let cur = map.length ? map[0].a : null;
+    for (const m of map) if (absTop(m.sec) - 90 <= probe) cur = m.a;
+    // at the very bottom, lock to the last section
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4 && map.length) cur = map[map.length-1].a;
     links.forEach(a => a.classList.toggle('active', a === cur));
   };
   window.addEventListener('scroll', onScroll, { passive:true });
+  window.addEventListener('resize', onScroll);
+  window.addEventListener('load', onScroll);
   onScroll();
 })();
 
