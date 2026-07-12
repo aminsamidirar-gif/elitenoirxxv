@@ -316,6 +316,16 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 .reg-badge .rb-wa:hover{color:#3ce87a}
 @media (max-width:520px){.reg-badge .rb-wa{padding-left:0;border-left:none}}
 
+/* ===== GOLD SCROLL PROGRESS ===== */
+#goldProgress{position:fixed;top:0;left:0;height:2px;width:0;z-index:300;background:linear-gradient(90deg,#8a6420,#f5d97a,#fff4c2);box-shadow:0 0 12px rgba(245,217,122,.55);pointer-events:none}
+
+/* ===== DEADLINE COUNTDOWN ===== */
+.countdown{display:flex;gap:14px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.countdown .cd{min-width:74px;padding:14px 10px 12px;border:1px solid var(--line-strong);background:linear-gradient(180deg,rgba(201,161,74,.08),rgba(2,2,7,0));text-align:center}
+.countdown .cd .v{font-family:var(--display);font-weight:600;font-size:30px;line-height:1;background:linear-gradient(180deg,#fff4c2,#c9a14a 60%,#8a6420);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.countdown .cd .k{margin-top:8px;font-family:var(--sans);font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--silver-dim)}
+@media (max-width:520px){.countdown{gap:10px}.countdown .cd{min-width:64px;padding:11px 8px 9px}.countdown .cd .v{font-size:24px}}
+
 /* ===== CINEMATIC LOADING SCREEN ===== */
 #loader{position:fixed;inset:0;z-index:10000;background:radial-gradient(80% 60% at 50% 40%,#0a1430 0%,#04040c 55%,#020207 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;transition:opacity 1s ease,visibility 1s ease}
 #loader.done{opacity:0;visibility:hidden;pointer-events:none}
@@ -932,7 +942,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     </div>
 
     <div class="stat-band reveal" id="statBand">
-      <div class="sb"><div class="n" data-to="50" data-suffix="">0</div><div class="l">Elite Seats / Cycle</div></div>
+      <div class="sb"><div class="n" data-to="100" data-suffix="">0</div><div class="l">Elite Seats / Cycle</div></div>
       <div class="sb"><div class="n" data-to="12" data-suffix="">0</div><div class="l">Month Development Cycle</div></div>
       <div class="sb"><div class="n" data-to="1" data-suffix="-on-1">0</div><div class="l">Focused Training</div></div>
       <div class="sb"><div class="n" data-to="2" data-suffix="×">0</div><div class="l">Sessions / Week</div></div>
@@ -1111,6 +1121,12 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
       <div class="reg-badge reveal">
         <span class="rb-label">Registration Ends</span>
         <span class="rb-date">August 1</span>
+      </div>
+      <div class="countdown reveal" id="deadlineCountdown" data-deadline="2026-08-01T23:59:59+03:00">
+        <div class="cd"><div class="v" id="cdD">--</div><div class="k">Days</div></div>
+        <div class="cd"><div class="v" id="cdH">--</div><div class="k">Hours</div></div>
+        <div class="cd"><div class="v" id="cdM">--</div><div class="k">Minutes</div></div>
+        <div class="cd"><div class="v" id="cdS">--</div><div class="k">Seconds</div></div>
       </div>
     </div>
 
@@ -1598,6 +1614,38 @@ setTimeout(() => document.getElementById('loader')?.classList.add('done'), 4000)
   window.addEventListener('scroll', update, { passive:true });
   window.addEventListener('resize', update);
   update();
+})();
+
+// ===== Gold scroll progress + deadline countdown =====
+(function(){
+  const bar = document.createElement('div');
+  bar.id = 'goldProgress';
+  document.body.appendChild(bar);
+  const upd = () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (h > 0 ? (window.scrollY / h) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', upd, { passive:true });
+  window.addEventListener('resize', upd);
+  upd();
+
+  const cd = document.getElementById('deadlineCountdown');
+  if (cd) {
+    const end = new Date(cd.getAttribute('data-deadline')).getTime();
+    const D = document.getElementById('cdD'), H = document.getElementById('cdH'),
+          M = document.getElementById('cdM'), S = document.getElementById('cdS');
+    const pad = (n) => String(n).padStart(2, '0');
+    const tick = () => {
+      let ms = end - Date.now();
+      if (ms < 0) ms = 0;
+      D.textContent = pad(Math.floor(ms / 86400000));
+      H.textContent = pad(Math.floor(ms / 3600000) % 24);
+      M.textContent = pad(Math.floor(ms / 60000) % 60);
+      S.textContent = pad(Math.floor(ms / 1000) % 60);
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
 })();
 
 // ===== Nav solidify + scroll-spy (v4: lock-until-settle) =====
