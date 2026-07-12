@@ -1650,7 +1650,8 @@ setTimeout(() => document.getElementById('loader')?.classList.add('done'), 4000)
 
 // ===== Live seat counters (shared across all visitors) =====
 window.EN_SEATS = (function(){
-  const API = 'https://api.counterapi.dev/v1/elitenoirxxv-seats/';
+  const API = 'https://abacus.jasoncameron.dev/';
+  const NS = 'elitenoirxxv-seats';
   const MAX = 25, TOTAL = 100;
   const words = ['Zero','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];
   const tens = ['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];
@@ -1672,8 +1673,10 @@ window.EN_SEATS = (function(){
       filledTotal += filled;
       const rem = MAX - filled;
       const pct = Math.round((filled / MAX) * 100);
-      const f = s.querySelector('.filled'); if (f) f.textContent = filled;
-      const pm = s.querySelector('.pmeta span:last-child'); if (pm) pm.textContent = rem > 0 ? rem + ' Remaining' : 'Grade Closed';
+      const f = s.querySelector('.filled');
+      const pm = s.querySelector('.pmeta > span:last-child');
+      if (f) f.textContent = filled;
+      if (pm) pm.textContent = rem > 0 ? rem + ' Remaining' : 'Grade Closed';
       const bar = s.querySelector('.bar'); if (bar) bar.style.width = pct + '%';
       s.setAttribute('data-fill', pct);
     });
@@ -1684,14 +1687,14 @@ window.EN_SEATS = (function(){
     await Promise.all(spots.map(async s => {
       const g = s.getAttribute('data-grade');
       try {
-        const r = await fetch(API + g, { cache: 'no-store' });
-        if (r.ok) live[g] = (await r.json()).count || 0;
+        const r = await fetch(API + 'get/' + NS + '/' + g, { cache: 'no-store' });
+        if (r.ok) live[g] = (await r.json()).value || 0;
       } catch(e) {}
     }));
     render(live);
   };
   const increment = async (grade) => {
-    try { await fetch(API + grade + '/up', { cache: 'no-store' }); } catch(e) {}
+    try { await fetch(API + 'hit/' + NS + '/' + grade, { cache: 'no-store' }); } catch(e) {}
     load();
   };
   load();
