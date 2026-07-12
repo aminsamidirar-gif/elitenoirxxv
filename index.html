@@ -203,9 +203,8 @@ section{position:relative;padding:140px 0}
 .attribute-strip .att .desc{font-family:var(--sans);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory-faint)}
 
 /* AVAILABILITY */
-.spots{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-@media (max-width:1020px){.spots{grid-template-columns:1fr 1fr}.spots .spot:last-child{grid-column:1/-1}}
-@media (max-width:760px){.spots{grid-template-columns:1fr}.spots .spot:last-child{grid-column:auto}}
+.spots{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:760px){.spots{grid-template-columns:1fr}}
 .spot{position:relative;padding:44px 40px;background:linear-gradient(180deg,rgba(17,17,27,.85),rgba(7,7,14,.95));border:1px solid var(--line)}
 .spot .head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px}
 .spot .grade{font-family:var(--display);font-size:38px;font-weight:500;line-height:1}
@@ -908,7 +907,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
 
     <div class="about-grid">
       <div>
-        <p class="lead reveal">There are no scouts at our gates. No open trials. No mass enrolment. Seventy-five seats across three grades. One cycle. Twelve months under a single roof of obsidian and brass — where the ball is taught as language, and silence as discipline.</p>
+        <p class="lead reveal">There are no scouts at our gates. No open trials. No mass enrolment. One hundred seats across four grades. One cycle. Twelve months under a single roof of obsidian and brass — where the ball is taught as language, and silence as discipline.</p>
         <p class="body reveal">We are based at the Imperial Sporting Quarter beside the National Palace grounds. Our pitch is private. Our hours are early. Our methods belong to no federation but the one written on our crest. Players arrive as recommendations and leave as references.</p>
         <p class="body reveal">Elite Noir XXV operates as the invitation-only elite counterpart to <em style="color:var(--gold-bright);font-style:normal;letter-spacing:.05em">Elite Kickers Academy</em> — our sister programme, where every Noir candidate begins.</p>
       </div>
@@ -916,9 +915,9 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
         <div class="row"><div class="k">Founded</div><div class="v gold">MMXXV · 2025</div></div>
         <div class="row"><div class="k">Location</div><div class="v">Addis Ababa, Ethiopia</div></div>
         <div class="row"><div class="k">Grounds</div><div class="v">Imperial Sporting Quarter</div></div>
-        <div class="row"><div class="k">Ages</div><div class="v">4 — 16</div></div>
+        <div class="row"><div class="k">Ages</div><div class="v">4 — 17</div></div>
         <div class="row"><div class="k">Cycle</div><div class="v">12 Months, Full-board</div></div>
-        <div class="row"><div class="k">Cohort Size</div><div class="v">75 Seats · By Invitation</div></div>
+        <div class="row"><div class="k">Cohort Size</div><div class="v">100 Seats · By Invitation</div></div>
         <div class="row"><div class="k">Training</div><div class="v gold">1-on-1 Focused, Weekly</div></div>
         <div class="row"><div class="k">Sessions</div><div class="v">2 / Week</div></div>
         <div class="row"><div class="k">Sister</div><div class="v">Elite Kickers Academy</div></div>
@@ -928,7 +927,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     <div class="pillars reveal">
       <div class="pillar"><div class="num">I</div><div class="name">Discipline</div><div class="desc">First whistle at dawn. Late means absent. Absent means dismissed.</div></div>
       <div class="pillar"><div class="num">II</div><div class="name">Discretion</div><div class="desc">No press. No livestream. The work is private until the player is not.</div></div>
-      <div class="pillar"><div class="num">III</div><div class="name">Distinction</div><div class="desc">Seventy-five names per cycle. Each one carried by the next.</div></div>
+      <div class="pillar"><div class="num">III</div><div class="name">Distinction</div><div class="desc">One hundred names per cycle. Each one carried by the next.</div></div>
       <div class="pillar"><div class="num">IV</div><div class="name">Devotion</div><div class="desc">A house of teachers, not coaches. We answer to the craft, not the calendar.</div></div>
     </div>
 
@@ -1005,7 +1004,7 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   <div class="squad-overlay">
     <div class="wrap">
       <div class="rule reveal" style="justify-content:center;margin-bottom:18px">The Cohort · MMXXV</div>
-      <h2 class="h-display reveal" style="font-weight:500;font-size:clamp(28px,3.6vw,48px);margin:0;text-align:center">Seventy-five players. <span class="gold">One standard.</span></h2>
+      <h2 class="h-display reveal" style="font-weight:500;font-size:clamp(28px,3.6vw,48px);margin:0;text-align:center">One hundred players. <span class="gold">One standard.</span></h2>
     </div>
   </div>
 </section>
@@ -1107,8 +1106,8 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
   <div class="wrap">
     <div class="section-header">
       <div class="rule reveal">Availability · MMXXVI Cycle</div>
-      <h2 class="h-display h2 reveal">Forty-seven seats remain.</h2>
-      <p class="sub reveal">Three grades. Seventy-five total. Once a grade closes, the next intake opens in twelve months.</p>
+      <h2 class="h-display h2 reveal">Seventy-two seats remain.</h2>
+      <p class="sub reveal">Four grades. One hundred total. Once a grade closes, the next intake opens in twelve months.</p>
       <div class="reg-badge reveal">
         <span class="rb-label">Registration Ends</span>
         <span class="rb-date">August 1</span>
@@ -1118,21 +1117,27 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
     <div class="spots">
       <div class="spot reveal" data-fill="32">
         <div class="head"><div class="grade gold">Noir I</div><div class="max">25 Max</div></div>
-        <div class="age-band">Ages 4 — 7 · Foundation Grade</div>
+        <div class="age-band">Ages 4 — 6 · Foundation Grade</div>
         <div class="progress"><div class="bar"></div></div>
         <div class="pmeta"><span><span class="filled">8</span> Filled</span><span>17 Remaining</span></div>
       </div>
       <div class="spot reveal" data-fill="24">
         <div class="head"><div class="grade gold">Noir II</div><div class="max">25 Max</div></div>
-        <div class="age-band">Ages 8 — 10 · Development Grade</div>
+        <div class="age-band">Ages 7 — 10 · Development Grade</div>
         <div class="progress"><div class="bar"></div></div>
         <div class="pmeta"><span><span class="filled">6</span> Filled</span><span>19 Remaining</span></div>
       </div>
-      <div class="spot reveal" data-fill="56">
+      <div class="spot reveal" data-fill="32">
         <div class="head"><div class="grade gold">Noir III</div><div class="max">25 Max</div></div>
-        <div class="age-band">Ages 10 — 16 · Senior Grade</div>
+        <div class="age-band">Ages 11 — 13 · Intermediate Grade</div>
         <div class="progress"><div class="bar"></div></div>
-        <div class="pmeta"><span><span class="filled">14</span> Filled</span><span>11 Remaining</span></div>
+        <div class="pmeta"><span><span class="filled">8</span> Filled</span><span>17 Remaining</span></div>
+      </div>
+      <div class="spot reveal" data-fill="24">
+        <div class="head"><div class="grade gold">Noir IV</div><div class="max">25 Max</div></div>
+        <div class="age-band">Ages 14 — 17 · Senior Grade</div>
+        <div class="progress"><div class="bar"></div></div>
+        <div class="pmeta"><span><span class="filled">6</span> Filled</span><span>19 Remaining</span></div>
       </div>
     </div>
 
@@ -1323,9 +1328,10 @@ footer.bottom .legal{margin-top:50px;padding-top:30px;border-top:1px solid var(-
           <div class="field"><label>Grade Applying For <span class="req">*</span></label>
             <select name="player_grade" required>
               <option value="">— Select —</option>
-              <option>Noir I · Ages 4 — 7</option>
-              <option>Noir II · Ages 8 — 10</option>
-              <option>Noir III · Ages 10 — 16</option>
+              <option>Noir I · Ages 4 — 6</option>
+              <option>Noir II · Ages 7 — 10</option>
+              <option>Noir III · Ages 11 — 13</option>
+              <option>Noir IV · Ages 14 — 17</option>
             </select>
           </div>
           <div class="field full"><label>Passport Photo <span class="req">*</span></label>
